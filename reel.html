@@ -99,11 +99,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 
 /* REELS */
 .reel-horizontal{border-bottom:1px solid #111;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
-.reel-vid{position:relative;overflow:hidden;background:#080808;}
+.reel-vid{position:relative;overflow:hidden;background:#080808;cursor:pointer;}
 .reel-horizontal .reel-vid{aspect-ratio:16/9;}
 .reel-vid iframe{width:100%;height:100%;border:none;display:block;}
 .reel-vid-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(233,30,140,0.06),transparent);pointer-events:none;opacity:0;transition:opacity 0.4s;}
 .reel-vid:hover .reel-vid-overlay{opacity:1;}
+.reel-thumb{width:100%;height:100%;object-fit:cover;filter:grayscale(30%);transition:transform 0.6s ease,filter 0.4s ease;display:block;}
+.reel-vid:hover .reel-thumb{transform:scale(1.04);filter:grayscale(0%);}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:var(--pink);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.3s ease,background 0.3s;z-index:2;}
+.play-btn::after{content:'';border-left:22px solid white;border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:5px;}
+.reel-vid:hover .play-btn{transform:translate(-50%,-50%) scale(1.15);background:#ff2da0;}
+.reel-open-tag{position:absolute;bottom:1rem;right:1rem;font-family:"DM Mono",monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);background:rgba(0,0,0,0.5);padding:0.3rem 0.6rem;z-index:2;transition:color 0.3s;}
+.reel-vid:hover .reel-open-tag{color:var(--pink);}
 .reel-horizontal .reel-meta{padding:4rem;display:flex;flex-direction:column;justify-content:center;border-left:1px solid #111;}
 .reel-vertical-pair{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #111;}
 .reel-vertical-card{display:flex;flex-direction:column;border-right:1px solid #111;}
@@ -277,7 +284,10 @@ footer a{color:var(--pink);text-decoration:none;}
   </div>
 
   <div class="reel-horizontal reel-reveal">
-    <div class="reel-vid" data-src="https://drive.google.com/file/d/1amQH7BNJyb5TXjbGJN_WbH0EDKIBrZtU/preview">
+    <div class="reel-vid" onclick="window.open('https://drive.google.com/file/d/1amQH7BNJyb5TXjbGJN_WbH0EDKIBrZtU/view','_blank')">
+      <img class="reel-thumb" src="https://drive.google.com/thumbnail?id=1amQH7BNJyb5TXjbGJN_WbH0EDKIBrZtU&sz=w800" alt="Reel 01" onerror="this.style.background='#111';this.style.height='100%'"/>
+      <div class="play-btn"></div>
+      <span class="reel-open-tag">Click to watch ↗</span>
       <div class="reel-vid-overlay"></div>
     </div>
     <div class="reel-meta">
@@ -290,7 +300,10 @@ footer a{color:var(--pink);text-decoration:none;}
 
   <div class="reel-vertical-pair">
     <div class="reel-vertical-card reel-reveal">
-      <div class="reel-vid" data-src="https://drive.google.com/file/d/13CbN1zuYks95zGkBoy-ZWvafCyjwdrKS/preview">
+      <div class="reel-vid" onclick="window.open('https://drive.google.com/file/d/13CbN1zuYks95zGkBoy-ZWvafCyjwdrKS/view','_blank')">
+        <img class="reel-thumb" src="https://drive.google.com/thumbnail?id=13CbN1zuYks95zGkBoy-ZWvafCyjwdrKS&sz=w800" alt="Reel 02" onerror="this.style.background='#111';this.style.height='100%'"/>
+        <div class="play-btn"></div>
+        <span class="reel-open-tag">Click to watch ↗</span>
         <div class="reel-vid-overlay"></div>
       </div>
       <div class="reel-meta">
@@ -301,7 +314,10 @@ footer a{color:var(--pink);text-decoration:none;}
       </div>
     </div>
     <div class="reel-vertical-card reel-reveal">
-      <div class="reel-vid" data-src="https://drive.google.com/file/d/1VS6yFGGTNE2mFbxSsvd-MepCcDJciD3-/preview">
+      <div class="reel-vid" onclick="window.open('https://drive.google.com/file/d/1VS6yFGGTNE2mFbxSsvd-MepCcDJciD3-/view','_blank')">
+        <img class="reel-thumb" src="https://drive.google.com/thumbnail?id=1VS6yFGGTNE2mFbxSsvd-MepCcDJciD3-&sz=w800" alt="Reel 03" onerror="this.style.background='#111';this.style.height='100%'"/>
+        <div class="play-btn"></div>
+        <span class="reel-open-tag">Click to watch ↗</span>
         <div class="reel-vid-overlay"></div>
       </div>
       <div class="reel-meta">
@@ -519,20 +535,11 @@ sections.forEach(s => {
   });
 });
 
-// ── SCROLL-TRIGGERED VIDEO PLAY ──
-document.querySelectorAll('.reel-vid[data-src]').forEach(vid => {
+// ── SCROLL-TRIGGERED VIDEO REVEAL ──
+document.querySelectorAll('.reel-vid').forEach(vid => {
   ScrollTrigger.create({
-    trigger: vid, start:'top 80%',
-    onEnter: () => {
-      if(!vid.querySelector('iframe')){
-        const iframe = document.createElement('iframe');
-        iframe.src = vid.dataset.src + '&autoplay=1';
-        iframe.allow = 'autoplay';
-        iframe.allowFullscreen = true;
-        iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
-        vid.prepend(iframe);
-      }
-    }
+    trigger: vid, start:'top 85%',
+    onEnter: () => { gsap.to(vid, { opacity:1, duration:0.8, ease:'power2.out' }); }
   });
 });
 
