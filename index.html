@@ -6,367 +6,165 @@
 <title>DIYA RATHOD</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#080808;
+  --white:#f8f8f8;
+  --gray:#888;
+  --lightgray:#e0e0e0;
+  --pink:#e91e8c;
+  --pink-light:#f472b6;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--black);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden;}
 
-  :root {
-    --black: #0a0a0a;
-    --cream: #f5f0e8;
-    --off-white: #faf8f4;
-    --purple: #6c5ce7;
-    --purple-light: #a29bfe;
-    --gray: #888;
-    --border: #1a1a1a;
-  }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3rem;background:var(--white);border-bottom:1px solid var(--black);}
+.nav-logo{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--black);text-decoration:none;text-transform:uppercase;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--black);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--pink);}
 
-  html { scroll-behavior: smooth; }
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--black);padding-top:58px;}
+.hero-image{position:relative;overflow:hidden;background:var(--black);min-height:600px;}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(100%);opacity:0.9;display:block;}
+.hero-overlay-text{position:absolute;bottom:-10px;left:-8px;font-family:'Playfair Display',serif;font-size:clamp(7rem,14vw,13rem);font-weight:900;line-height:0.85;color:rgba(255,255,255,0.12);letter-spacing:-0.04em;pointer-events:none;user-select:none;}
+.hero-tag{position:absolute;top:2rem;left:2rem;background:var(--pink);color:white;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;padding:0.4rem 0.9rem;text-transform:uppercase;}
+.hero-caption{position:absolute;bottom:2rem;right:2rem;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;color:rgba(255,255,255,0.5);text-transform:uppercase;}
 
-  body {
-    background: var(--cream);
-    color: var(--black);
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+.hero-text{padding:4rem 3rem;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--black);}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--pink);text-transform:uppercase;margin-bottom:1.5rem;}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,6vw,6rem);font-weight:900;line-height:0.92;letter-spacing:-0.03em;margin-bottom:0.5rem;}
+.hero-name .italic{font-style:italic;color:var(--black);}
+.hero-name .pink{color:var(--pink);}
+.hero-rule{width:60px;height:2px;background:var(--black);margin:1.5rem 0;}
+.hero-bio{font-size:14px;color:#444;line-height:1.9;max-width:380px;margin-bottom:2.5rem;}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:var(--black);color:var(--white);padding:0.8rem 2rem;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;font-weight:600;border:1px solid var(--black);transition:all 0.2s;}
+.btn-primary:hover{background:var(--pink);border-color:var(--pink);}
+.btn-secondary{background:transparent;color:var(--black);padding:0.8rem 2rem;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;font-weight:600;border:1px solid var(--black);transition:all 0.2s;}
+.btn-secondary:hover{background:var(--black);color:var(--white);}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 3rem;
-    background: var(--cream);
-    border-bottom: 1px solid var(--border);
-    mix-blend-mode: normal;
-  }
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; letter-spacing: 0.15em;
-    color: var(--black); text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--black); text-decoration: none; font-weight: 500;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--purple); }
+/* TICKER */
+.ticker{background:var(--black);color:var(--white);padding:0.7rem 0;overflow:hidden;border-bottom:1px solid var(--black);}
+.ticker-inner{display:flex;gap:3rem;animation:ticker 22s linear infinite;white-space:nowrap;}
+.ticker-inner span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;}
+.ticker-inner span.acc{color:var(--pink);opacity:1;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid var(--border);
-    padding-top: 60px;
-  }
-  .hero-text {
-    padding: 6rem 3rem 4rem;
-    display: flex; flex-direction: column; justify-content: center;
-    border-right: 1px solid var(--border);
-  }
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.2em; color: var(--purple);
-    text-transform: uppercase; margin-bottom: 1.5rem;
-  }
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(4rem, 8vw, 7rem);
-    font-weight: 900; line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 2rem;
-  }
-  .hero-name em { font-style: italic; color: var(--purple); }
-  .hero-bio {
-    font-size: 15px; color: #444; line-height: 1.8;
-    max-width: 420px; margin-bottom: 3rem;
-  }
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
-  .btn-primary {
-    background: var(--black); color: var(--cream);
-    padding: 0.85rem 2rem; font-size: 11px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; font-weight: 600;
-    transition: background 0.2s, color 0.2s;
-    border: 1px solid var(--black);
-  }
-  .btn-primary:hover { background: var(--purple); border-color: var(--purple); }
-  .btn-secondary {
-    background: transparent; color: var(--black);
-    padding: 0.85rem 2rem; font-size: 11px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; font-weight: 600;
-    border: 1px solid var(--black);
-    transition: background 0.2s, color 0.2s;
-  }
-  .btn-secondary:hover { background: var(--black); color: var(--cream); }
+/* SECTION COMMON */
+section{border-bottom:1px solid var(--black);}
+.section-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gray);margin-bottom:0.5rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-0.02em;}
 
-  .hero-image {
-    position: relative; overflow: hidden;
-    background: var(--black);
-    min-height: 500px;
-  }
-  .hero-image img {
-    width: 100%; height: 100%; object-fit: cover;
-    object-position: top center;
-    opacity: 0.85;
-    filter: grayscale(20%);
-  }
-  .hero-image-caption {
-    position: absolute; bottom: 2rem; right: 2rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.6); text-transform: uppercase;
-  }
-  .issue-tag {
-    position: absolute; top: 2rem; left: 2rem;
-    background: var(--purple); color: white;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.15em;
-    padding: 0.4rem 0.8rem; text-transform: uppercase;
-  }
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1.6fr;}
+.about-left{padding:5rem 3rem;border-right:1px solid var(--black);display:flex;flex-direction:column;justify-content:space-between;}
+.about-right{padding:5rem 3rem;}
+.about-quote{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);font-style:italic;line-height:1.5;margin-bottom:2rem;border-left:3px solid var(--pink);padding-left:1.5rem;}
+.about-body{font-size:14px;color:#444;line-height:1.95;margin-bottom:2rem;}
+.about-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;}
+.tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;border:1px solid var(--black);padding:0.3rem 0.7rem;text-transform:uppercase;}
+.tag.pink{background:var(--pink);color:white;border-color:var(--pink);}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:3rem;border-top:1px solid var(--black);}
+.fact{padding:1.5rem 0;border-bottom:1px solid var(--black);border-right:1px solid var(--black);}
+.fact:nth-child(2n){border-right:none;}
+.fact:nth-last-child(-n+2){border-bottom:none;}
+.fact-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--pink);line-height:1;}
+.fact-label{font-size:10px;color:var(--gray);letter-spacing:0.05em;margin-top:0.2rem;}
 
-  /* ── TICKER ── */
-  .ticker {
-    background: var(--black); color: var(--cream);
-    padding: 0.75rem 0; overflow: hidden;
-    border-bottom: 1px solid var(--border);
-  }
-  .ticker-inner {
-    display: flex; gap: 4rem;
-    animation: ticker 20s linear infinite;
-    white-space: nowrap;
-  }
-  .ticker-inner span {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--cream); opacity: 0.8;
-  }
-  .ticker-inner span.accent { color: var(--purple-light); }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* SKILLS */
+.skills{padding:5rem 3rem;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--black);margin-top:3rem;}
+.skill-card{padding:2rem;border-right:1px solid var(--black);border-bottom:1px solid var(--black);}
+.skill-card:nth-child(3n){border-right:none;}
+.skill-card:nth-last-child(-n+3){border-bottom:none;}
+.skill-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--pink);margin-bottom:0.6rem;}
+.skill-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.6rem;}
+.skill-list{font-size:11px;color:var(--gray);line-height:2.1;}
 
-  /* ── SECTION COMMON ── */
-  section { border-bottom: 1px solid var(--border); }
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--gray);
-    margin-bottom: 0.5rem;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 900; line-height: 1.1;
-    letter-spacing: -0.01em;
-  }
+/* PROJECTS */
+.projects{padding:5rem 0;}
+.projects-header{padding:0 3rem 3rem;}
+.project-grid{display:grid;grid-template-columns:1fr 1fr;}
+.project-card{padding:3rem;border-top:1px solid var(--black);border-right:1px solid var(--black);transition:background 0.2s;}
+.project-card:nth-child(2n){border-right:none;}
+.project-card:hover{background:#f0f0f0;}
+.project-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--gray);margin-bottom:0.8rem;}
+.project-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:0.7rem;line-height:1.2;}
+.project-desc{font-size:12px;color:#555;line-height:1.85;margin-bottom:1.5rem;}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.project-tag{font-family:'DM Mono',monospace;font-size:9px;background:var(--black);color:var(--white);padding:0.25rem 0.6rem;letter-spacing:0.08em;}
+.project-tag.light{background:transparent;color:var(--black);border:1px solid #ccc;}
+.project-tag.pink-tag{background:var(--pink);color:white;}
 
-  /* ── ABOUT ── */
-  .about {
-    display: grid; grid-template-columns: 1fr 2fr;
-  }
-  .about-left {
-    padding: 5rem 3rem;
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-  .about-right { padding: 5rem 3rem; }
-  .about-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
-    font-style: italic; line-height: 1.5;
-    margin-bottom: 2rem;
-  }
-  .about-quote span { color: var(--purple); }
-  .about-body { font-size: 15px; color: #444; line-height: 1.9; margin-bottom: 2rem; }
-  .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.1em;
-    border: 1px solid var(--border); padding: 0.35rem 0.75rem;
-    text-transform: uppercase; color: var(--black);
-  }
-  .tag.purple { background: var(--purple); color: white; border-color: var(--purple); }
-  .about-facts { margin-top: 3rem; }
-  .fact { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #ddd; }
-  .fact:last-child { border-bottom: none; }
-  .fact-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem; font-weight: 900; color: var(--purple);
-    line-height: 1;
-  }
-  .fact-label { font-size: 11px; color: var(--gray); letter-spacing: 0.05em; margin-top: 0.25rem; }
+/* CREATIVE */
+.creative{display:grid;grid-template-columns:1.4fr 1fr;}
+.creative-left{padding:5rem 3rem;border-right:1px solid var(--black);}
+.creative-right{padding:5rem 3rem;background:var(--black);}
+.creative-right .section-label{color:var(--pink);}
+.creative-right .section-title{color:var(--white);}
+.tools-list{margin-top:2.5rem;}
+.tool-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid var(--lightgray);font-size:12px;}
+.tool-row:last-child{border-bottom:none;}
+.tool-name{font-weight:500;}
+.tool-bar{width:100px;height:2px;background:#ddd;overflow:hidden;}
+.tool-fill{height:100%;background:var(--pink);}
+.creative-items{margin-top:2.5rem;}
+.creative-item{padding:1.2rem 0;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center;}
+.creative-item:last-child{border-bottom:none;}
+.creative-item-name{font-size:13px;color:var(--white);}
+.creative-item-tag{font-family:'DM Mono',monospace;font-size:9px;color:var(--pink);letter-spacing:0.1em;}
 
-  /* ── SKILLS ── */
-  .skills { padding: 5rem 3rem; }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    margin-top: 3rem;
-    border: 1px solid var(--border);
-  }
-  .skill-card {
-    padding: 2rem;
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .skill-card:nth-child(3n) { border-right: none; }
-  .skill-card:nth-last-child(-n+3) { border-bottom: none; }
-  .skill-icon {
-    font-size: 1.5rem; margin-bottom: 1rem;
-  }
-  .skill-cat {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--purple);
-    margin-bottom: 0.75rem;
-  }
-  .skill-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem;
-  }
-  .skill-list {
-    font-size: 12px; color: var(--gray); line-height: 2;
-  }
+/* CONTACT */
+.contact{display:grid;grid-template-columns:1fr 1fr;min-height:50vh;}
+.contact-left{padding:5rem 3rem;border-right:1px solid var(--black);display:flex;flex-direction:column;justify-content:center;}
+.contact-right{padding:5rem 3rem;background:var(--black);display:flex;flex-direction:column;justify-content:center;}
+.contact-right .section-label{color:var(--pink);}
+.contact-right .section-title{color:var(--white);font-size:clamp(1.5rem,3vw,2.5rem);}
+.contact-tagline{font-family:'Playfair Display',serif;font-size:clamp(1rem,1.8vw,1.4rem);font-style:italic;color:#444;margin-top:1rem;line-height:1.6;max-width:340px;}
+.contact-links{margin-top:2.5rem;display:flex;flex-direction:column;gap:0;}
+.contact-link{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid #222;text-decoration:none;color:var(--white);font-size:12px;letter-spacing:0.04em;transition:color 0.2s;}
+.contact-link:hover{color:var(--pink);}
+.contact-link span{font-family:'DM Mono',monospace;font-size:9px;color:var(--gray);}
 
-  /* ── PROJECTS ── */
-  .projects { padding: 5rem 0; }
-  .projects-header { padding: 0 3rem 3rem; }
-  .project-grid { display: grid; grid-template-columns: 1fr 1fr; }
-  .project-card {
-    padding: 3rem;
-    border-top: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-    transition: background 0.2s;
-  }
-  .project-card:nth-child(2n) { border-right: none; }
-  .project-card:hover { background: var(--off-white); }
-  .project-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.15em; color: var(--gray);
-    margin-bottom: 1rem;
-  }
-  .project-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.2;
-  }
-  .project-desc { font-size: 13px; color: #555; line-height: 1.8; margin-bottom: 1.5rem; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .project-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; background: var(--black); color: var(--cream);
-    padding: 0.25rem 0.6rem; letter-spacing: 0.08em;
-  }
-  .project-tag.light { background: transparent; color: var(--black); border: 1px solid #ccc; }
+/* FOOTER */
+footer{background:var(--black);color:var(--white);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+footer p{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--gray);}
+footer a{color:var(--pink);text-decoration:none;}
 
-  /* ── CREATIVE ── */
-  .creative {
-    display: grid; grid-template-columns: 2fr 1fr;
-  }
-  .creative-left {
-    padding: 5rem 3rem;
-    border-right: 1px solid var(--border);
-  }
-  .creative-right {
-    padding: 5rem 3rem;
-    background: var(--black); color: var(--cream);
-  }
-  .creative-right .section-title { color: var(--cream); }
-  .creative-right .section-label { color: var(--purple-light); }
-  .creative-items { margin-top: 2rem; }
-  .creative-item {
-    padding: 1.5rem 0;
-    border-bottom: 1px solid #333;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .creative-item:last-child { border-bottom: none; }
-  .creative-item-name { font-size: 14px; color: var(--cream); }
-  .creative-item-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; color: var(--purple-light); letter-spacing: 0.1em;
-  }
-  .tools-list { margin-top: 2rem; }
-  .tool-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 0; border-bottom: 1px solid #eee;
-    font-size: 13px;
-  }
-  .tool-row:last-child { border-bottom: none; }
-  .tool-name { font-weight: 500; }
-  .tool-bar {
-    width: 120px; height: 3px; background: #ddd; border-radius: 2px; overflow: hidden;
-  }
-  .tool-fill { height: 100%; background: var(--purple); border-radius: 2px; }
+/* MAGAZINE PULL QUOTE SECTION */
+.pullquote{padding:5rem 3rem;display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:center;}
+.pullquote-big{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6rem);font-weight:900;line-height:0.9;color:var(--black);}
+.pullquote-big em{font-style:italic;color:var(--pink);}
+.pullquote-right{border-left:1px solid var(--black);padding-left:3rem;}
+.pullquote-text{font-size:15px;color:#444;line-height:2;}
 
-  /* ── CONTACT ── */
-  .contact {
-    display: grid; grid-template-columns: 1fr 1fr;
-    min-height: 50vh;
-  }
-  .contact-left {
-    padding: 5rem 3rem;
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .contact-right {
-    padding: 5rem 3rem; background: var(--black);
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .contact-right .section-label { color: var(--purple-light); }
-  .contact-right .section-title { color: var(--cream); font-size: clamp(1.5rem, 3vw, 2.5rem); }
-  .contact-links { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
-  .contact-link {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 0; border-bottom: 1px solid #333;
-    text-decoration: none; color: var(--cream);
-    font-size: 13px; letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-  .contact-link:hover { color: var(--purple-light); }
-  .contact-link span { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--gray); }
-  .contact-email {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1rem, 2vw, 1.5rem); font-style: italic;
-    color: #444; margin-top: 1rem; line-height: 1.5;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--black); color: var(--cream);
-    padding: 2rem 3rem;
-    display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid #222;
-  }
-  footer p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--gray); }
-  footer a { color: var(--purple-light); text-decoration: none; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero, .about, .creative, .contact { grid-template-columns: 1fr; }
-    .hero-text, .about-left, .creative-left { border-right: none; border-bottom: 1px solid var(--border); }
-    .skills-grid { grid-template-columns: 1fr; }
-    .skill-card { border-right: none; border-bottom: 1px solid var(--border); }
-    .project-grid { grid-template-columns: 1fr; }
-    .project-card { border-right: none; }
-    .hero-text, .about-left, .about-right, .skills, .projects-header, .project-card,
-    .creative-left, .creative-right, .contact-left, .contact-right { padding: 3rem 1.5rem; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .ticker-inner { animation: none; }
-  }
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  .hero,.about,.creative,.contact{grid-template-columns:1fr;}
+  .hero-image{min-height:400px;border-bottom:1px solid var(--black);}
+  .hero-text,.about-left,.creative-left{border-right:none;border-bottom:1px solid var(--black);}
+  .skills-grid{grid-template-columns:1fr;}
+  .skill-card{border-right:none;}
+  .project-grid{grid-template-columns:1fr;}
+  .project-card{border-right:none;}
+  .pullquote{grid-template-columns:1fr;}
+  .pullquote-right{border-left:none;border-top:1px solid var(--black);padding-left:0;padding-top:2rem;}
+  .hero-text,.about-left,.about-right,.skills,.projects-header,.project-card,.creative-left,.creative-right,.contact-left,.contact-right,.pullquote{padding:3rem 1.5rem;}
+  footer{flex-direction:column;gap:1rem;text-align:center;}
+}
+@media(prefers-reduced-motion:reduce){.ticker-inner{animation:none;}}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">DR / Portfolio</a>
+  <a class="nav-logo" href="#">Diya Rathod</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -378,45 +176,64 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-image">
+    <div class="hero-tag">Portfolio 2025</div>
+    <img src="diya.jpg" alt="Diya Rathod"/>
+    <div class="hero-overlay-text">DR</div>
+    <p class="hero-caption">Diya Rathod · UoWD Dubai</p>
+  </div>
   <div class="hero-text">
-    <p class="hero-eyebrow">Vol. 01 · Computer Science · Dubai, UAE</p>
-    <h1 class="hero-name">DIYA<br/><em>RATHOD</em></h1>
-    <p class="hero-bio">I write code like I write stories — to build worlds that didn't exist before. CS student at UoWD blending technical depth with creative thinking.</p>
+    <p class="hero-eyebrow">CS Student · Dubai, UAE · India</p>
+    <h1 class="hero-name">
+      DIYA<br/>
+      <span class="italic">Rathod</span>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-bio">I write code like I write stories — to build worlds that didn't exist before. Blending technical depth with creative thinking, one line at a time.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View Work</a>
       <a href="Diya_Rathod_CV.pdf" class="btn-secondary" target="_blank">Download CV</a>
     </div>
-  </div>
-  <div class="hero-image">
-    <div class="issue-tag">Issue 2025</div>
-    <img src="diya.jpg" alt="Diya Rathod"/>
-    <p class="hero-image-caption">Diya Rathod · UoWD Dubai</p>
   </div>
 </section>
 
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-inner">
-    <span>Cybersecurity</span><span class="accent">·</span>
-    <span>Android Dev</span><span class="accent">·</span>
-    <span>Machine Learning</span><span class="accent">·</span>
-    <span>Graphic Design</span><span class="accent">·</span>
-    <span>Penetration Testing</span><span class="accent">·</span>
-    <span>Video Editing</span><span class="accent">·</span>
-    <span>Python</span><span class="accent">·</span>
-    <span>Kali Linux</span><span class="accent">·</span>
-    <span>Adobe Suite</span><span class="accent">·</span>
-    <span>Cybersecurity</span><span class="accent">·</span>
-    <span>Android Dev</span><span class="accent">·</span>
-    <span>Machine Learning</span><span class="accent">·</span>
-    <span>Graphic Design</span><span class="accent">·</span>
-    <span>Penetration Testing</span><span class="accent">·</span>
-    <span>Video Editing</span><span class="accent">·</span>
-    <span>Python</span><span class="accent">·</span>
-    <span>Kali Linux</span><span class="accent">·</span>
-    <span>Adobe Suite</span><span class="accent">·</span>
+    <span>Cybersecurity</span><span class="acc">✦</span>
+    <span>Android Dev</span><span class="acc">✦</span>
+    <span>Machine Learning</span><span class="acc">✦</span>
+    <span>Graphic Design</span><span class="acc">✦</span>
+    <span>Penetration Testing</span><span class="acc">✦</span>
+    <span>Video Editing</span><span class="acc">✦</span>
+    <span>Python</span><span class="acc">✦</span>
+    <span>Kali Linux</span><span class="acc">✦</span>
+    <span>Adobe Suite</span><span class="acc">✦</span>
+    <span>Cybersecurity</span><span class="acc">✦</span>
+    <span>Android Dev</span><span class="acc">✦</span>
+    <span>Machine Learning</span><span class="acc">✦</span>
+    <span>Graphic Design</span><span class="acc">✦</span>
+    <span>Penetration Testing</span><span class="acc">✦</span>
+    <span>Video Editing</span><span class="acc">✦</span>
+    <span>Python</span><span class="acc">✦</span>
+    <span>Kali Linux</span><span class="acc">✦</span>
+    <span>Adobe Suite</span><span class="acc">✦</span>
   </div>
 </div>
+
+<!-- PULL QUOTE -->
+<section class="pullquote">
+  <div class="pullquote-big">
+    Building<br/><em>worlds</em><br/>through<br/>code.
+  </div>
+  <div class="pullquote-right">
+    <p class="section-label">The Philosophy</p>
+    <p class="pullquote-text">
+      At the tips of my fingers, I have the power to create something entirely new. That idea still excites me every single day. I chose Computer Science not just for a career — but because code is how I build worlds that didn't exist before.<br/><br/>
+      I'm a second-year CS student at the University of Wollongong in Dubai, originally from India. I bring a rare mix of technical depth and creative energy across cybersecurity, Android development, machine learning, and design.
+    </p>
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -425,39 +242,42 @@
       <p class="section-label">About</p>
       <h2 class="section-title">The<br/>Story</h2>
     </div>
-    <div class="about-facts">
-      <div class="fact">
+    <div class="facts">
+      <div class="fact" style="padding-right:1.5rem;">
         <div class="fact-num">2nd</div>
-        <div class="fact-label">Year at UoWD Dubai</div>
+        <div class="fact-label">Year at UoWD</div>
       </div>
-      <div class="fact">
+      <div class="fact" style="padding-left:1.5rem;">
         <div class="fact-num">3</div>
         <div class="fact-label">Languages spoken</div>
       </div>
-      <div class="fact">
+      <div class="fact" style="padding-right:1.5rem;">
         <div class="fact-num">∞</div>
-        <div class="fact-label">Books read & counting</div>
+        <div class="fact-label">Books read</div>
+      </div>
+      <div class="fact" style="padding-left:1.5rem;">
+        <div class="fact-num">♥</div>
+        <div class="fact-label">Kindness first</div>
       </div>
     </div>
   </div>
   <div class="about-right">
     <blockquote class="about-quote">
-      "At the tips of my fingers, I have the power to build <span>something entirely new.</span> That idea still excites me every single day."
+      "I want to be known not just for what I build — but for the kindness I bring along the way."
     </blockquote>
     <p class="about-body">
-      Hi, I'm Diya — a second-year Computer Science student at the University of Wollongong in Dubai, originally from India. I chose CS because I love the idea of creating new worlds. Code is how I do that.<br/><br/>
-      I bring a rare mix of technical depth and creative energy. When I'm not deep in a penetration test or building Android apps, you'll find me crocheting, writing, reading, or editing a reel. I'm looking for opportunities where I can learn something new every single day — and build things that actually matter.<br/><br/>
-      I want to be known not just for what I build, but for the kindness I bring along the way.
+      Hi, I'm Diya — originally from India, now living and studying in Dubai. When I'm not deep in a penetration test or building Android apps, you'll find me crocheting, writing, reading obsessively, or editing a reel.<br/><br/>
+      I'm looking for opportunities where I can learn something new every single day and build things that actually matter. I believe the best tech is made by people who bring both logic and heart to the table.
     </p>
     <div class="about-tags">
-      <span class="tag purple">Cybersecurity</span>
-      <span class="tag purple">Android Dev</span>
-      <span class="tag purple">ML & Data Science</span>
-      <span class="tag">Crocheter</span>
-      <span class="tag">Avid Reader</span>
-      <span class="tag">Video Editor</span>
-      <span class="tag">Writer</span>
-      <span class="tag">Socializer</span>
+      <span class="tag pink">Cybersecurity</span>
+      <span class="tag pink">Android Dev</span>
+      <span class="tag pink">ML & Data Science</span>
+      <span class="tag">📚 Avid Reader</span>
+      <span class="tag">🧶 Crocheter</span>
+      <span class="tag">🎬 Video Editor</span>
+      <span class="tag">✍️ Writer</span>
+      <span class="tag">🏐 Volleyball</span>
     </div>
   </div>
 </section>
@@ -468,40 +288,34 @@
   <h2 class="section-title">Skills &amp; Tools</h2>
   <div class="skills-grid">
     <div class="skill-card">
-      <div class="skill-icon">🔐</div>
       <p class="skill-cat">Security</p>
       <h3>Cybersecurity</h3>
       <p class="skill-list">Kali Linux · Metasploit · Penetration Testing · OWASP Top 10 · SQL Injection · XSS · CSRF · DVWA · Juice Shop</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">📱</div>
       <p class="skill-cat">Mobile</p>
       <h3>Android Development</h3>
       <p class="skill-list">Android Studio · Kotlin · Java · RecyclerView · UI/UX Design · Material Design</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🤖</div>
       <p class="skill-cat">Data & AI</p>
       <h3>Machine Learning</h3>
       <p class="skill-list">Python · scikit-learn · Jupyter · PCA · t-SNE · TF-IDF · ML Pipelines</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">💻</div>
       <p class="skill-cat">Development</p>
       <h3>Programming</h3>
       <p class="skill-list">Python · SQL · HTML & CSS · Git & GitHub · Linux CLI · Virtual Machines</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🎨</div>
       <p class="skill-cat">Creative</p>
       <h3>Design & Media</h3>
-      <p class="skill-list">Adobe Photoshop · Adobe Suite · Canva · CapCut · Graphic Design · Video Editing</p>
+      <p class="skill-list">Adobe Photoshop · Adobe Suite · Canva · CapCut · Graphic Design · Video Editing · Writing</p>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">🗣️</div>
       <p class="skill-cat">People</p>
       <h3>Soft Skills</h3>
-      <p class="skill-list">Public Speaking · Leadership · Teamwork · Adaptability · Writing · Multilingual — EN / GU / HI</p>
+      <p class="skill-list">Public Speaking · Leadership · Teamwork · Adaptability · Writing · English · Gujarati · Hindi</p>
     </div>
   </div>
 </section>
@@ -514,46 +328,46 @@
   </div>
   <div class="project-grid">
     <div class="project-card">
-      <p class="project-num">01</p>
+      <p class="project-num">No. 01</p>
       <h3>Penetration Testing Report</h3>
-      <p class="project-desc">Full penetration test of DVWA and OWASP Juice Shop covering SQL injection, XSS, command injection, brute force, CSRF, and file inclusion — with CVE/OWASP mapping and a formal vulnerability report.</p>
+      <p class="project-desc">Full penetration test of DVWA and OWASP Juice Shop — SQL injection, XSS, command injection, brute force, CSRF, and file inclusion with CVE/OWASP mapping and formal vulnerability report.</p>
       <div class="project-tags">
         <span class="project-tag">Kali Linux</span>
         <span class="project-tag">Metasploit</span>
-        <span class="project-tag">OWASP</span>
+        <span class="project-tag pink-tag">OWASP</span>
         <span class="project-tag light">CSCI369</span>
       </div>
     </div>
     <div class="project-card">
-      <p class="project-num">02</p>
+      <p class="project-num">No. 02</p>
       <h3>Android RecyclerView App</h3>
-      <p class="project-desc">Built and styled a fully functional Android application using Android Studio, featuring custom RecyclerView components, polished UI design, and smooth user interactions.</p>
+      <p class="project-desc">A fully functional Android application built in Android Studio with custom RecyclerView components, polished UI design, and smooth user interactions.</p>
       <div class="project-tags">
         <span class="project-tag">Android Studio</span>
         <span class="project-tag">Kotlin</span>
-        <span class="project-tag">Java</span>
+        <span class="project-tag pink-tag">Java</span>
         <span class="project-tag light">CSIT242</span>
       </div>
     </div>
     <div class="project-card">
-      <p class="project-num">03</p>
+      <p class="project-num">No. 03</p>
       <h3>Machine Learning Pipeline</h3>
-      <p class="project-desc">Implemented dimensionality reduction (PCA, t-SNE) and NLP pipelines using scikit-learn and TF-IDF for text classification — with visualization and performance analysis in Jupyter Notebook.</p>
+      <p class="project-desc">Dimensionality reduction (PCA, t-SNE) and NLP pipelines using scikit-learn and TF-IDF for text classification, with Jupyter Notebook visualizations.</p>
       <div class="project-tags">
         <span class="project-tag">Python</span>
         <span class="project-tag">scikit-learn</span>
-        <span class="project-tag">Jupyter</span>
+        <span class="project-tag pink-tag">Jupyter</span>
         <span class="project-tag light">ML Coursework</span>
       </div>
     </div>
     <div class="project-card">
-      <p class="project-num">04</p>
-      <h3>Portfolio Website</h3>
-      <p class="project-desc">This magazine-style portfolio — designed and built from scratch using HTML, CSS, and GitHub Pages. Focused on bold typography, editorial layout, and personal branding.</p>
+      <p class="project-num">No. 04</p>
+      <h3>Magazine Portfolio</h3>
+      <p class="project-desc">This editorial-style portfolio — designed and built from scratch with HTML & CSS, hosted on GitHub Pages. Bold typography, black & white, and a touch of pink.</p>
       <div class="project-tags">
         <span class="project-tag">HTML & CSS</span>
         <span class="project-tag">GitHub Pages</span>
-        <span class="project-tag light">Personal Project</span>
+        <span class="project-tag pink-tag">Personal</span>
       </div>
     </div>
   </div>
@@ -564,45 +378,25 @@
   <div class="creative-left">
     <p class="section-label">Beyond Code</p>
     <h2 class="section-title">Creative<br/>Side</h2>
-    <p style="margin-top:1.5rem; color:#444; font-size:14px; line-height:1.9; max-width:420px;">
-      Most CS students show code. I also show up with a design eye, a video reel, and a story to tell. My creative background isn't separate from my technical work — it's what makes it better.
-    </p>
+    <p style="margin-top:1.5rem;color:#444;font-size:13px;line-height:1.95;max-width:400px;">Most CS students show only code. I also bring a design eye, a video reel, and a story to tell. My creative background isn't separate from my technical work — it makes it better.</p>
     <div class="tools-list">
       <div class="tool-row"><span class="tool-name">Adobe Photoshop</span><div class="tool-bar"><div class="tool-fill" style="width:85%"></div></div></div>
       <div class="tool-row"><span class="tool-name">Canva</span><div class="tool-bar"><div class="tool-fill" style="width:95%"></div></div></div>
-      <div class="tool-row"><span class="tool-name">CapCut (Video Editing)</span><div class="tool-bar"><div class="tool-fill" style="width:80%"></div></div></div>
-      <div class="tool-row"><span class="tool-name">Graphic Design</span><div class="tool-bar"><div class="tool-fill" style="width:75%"></div></div></div>
-      <div class="tool-row"><span class="tool-name">Writing & Storytelling</span><div class="tool-bar"><div class="tool-fill" style="width:90%"></div></div></div>
+      <div class="tool-row"><span class="tool-name">CapCut / Video Editing</span><div class="tool-bar"><div class="tool-fill" style="width:80%"></div></div></div>
+      <div class="tool-row"><span class="tool-name">Graphic Design</span><div class="tool-bar"><div class="tool-fill" style="width:78%"></div></div></div>
+      <div class="tool-row"><span class="tool-name">Writing & Storytelling</span><div class="tool-bar"><div class="tool-fill" style="width:92%"></div></div></div>
     </div>
   </div>
   <div class="creative-right">
-    <p class="section-label">Hobbies & Interests</p>
-    <h2 class="section-title" style="font-size:2rem;">What Makes<br/>Me, Me</h2>
+    <p class="section-label">What Makes Me, Me</p>
+    <h2 class="section-title" style="font-size:1.8rem;">Hobbies &<br/>Interests</h2>
     <div class="creative-items">
-      <div class="creative-item">
-        <span class="creative-item-name">📚 Avid Reader</span>
-        <span class="creative-item-tag">Always reading</span>
-      </div>
-      <div class="creative-item">
-        <span class="creative-item-name">🧶 Crocheting</span>
-        <span class="creative-item-tag">Handmade</span>
-      </div>
-      <div class="creative-item">
-        <span class="creative-item-name">✍️ Writing</span>
-        <span class="creative-item-tag">Storytelling</span>
-      </div>
-      <div class="creative-item">
-        <span class="creative-item-name">🎬 Reel Editing</span>
-        <span class="creative-item-tag">CapCut</span>
-      </div>
-      <div class="creative-item">
-        <span class="creative-item-name">🏐 Volleyball</span>
-        <span class="creative-item-tag">Former captain</span>
-      </div>
-      <div class="creative-item">
-        <span class="creative-item-name">🌍 Meeting People</span>
-        <span class="creative-item-tag">Socializer</span>
-      </div>
+      <div class="creative-item"><span class="creative-item-name">📚 Avid Reader</span><span class="creative-item-tag">Always reading</span></div>
+      <div class="creative-item"><span class="creative-item-name">🧶 Crocheting</span><span class="creative-item-tag">Handmade</span></div>
+      <div class="creative-item"><span class="creative-item-name">✍️ Writing</span><span class="creative-item-tag">Storytelling</span></div>
+      <div class="creative-item"><span class="creative-item-name">🎬 Reel Editing</span><span class="creative-item-tag">CapCut</span></div>
+      <div class="creative-item"><span class="creative-item-name">🏐 Volleyball</span><span class="creative-item-tag">Former captain</span></div>
+      <div class="creative-item"><span class="creative-item-name">🌍 Meeting People</span><span class="creative-item-tag">Socializer</span></div>
     </div>
   </div>
 </section>
@@ -612,24 +406,16 @@
   <div class="contact-left">
     <p class="section-label">Get In Touch</p>
     <h2 class="section-title">Let's<br/>Connect</h2>
-    <p class="contact-email">Open to internship opportunities, collaborations, and conversations.<br/>Let's build something meaningful.</p>
+    <p class="contact-tagline">Open to internship opportunities, collaborations, and good conversations. Let's build something meaningful.</p>
   </div>
   <div class="contact-right">
-    <p class="section-label">Links</p>
-    <h2 class="section-title">Find Me</h2>
+    <p class="section-label">Find Me</p>
+    <h2 class="section-title">Links</h2>
     <div class="contact-links">
-      <a href="mailto:rathoddiya610@gmail.com" class="contact-link">
-        rathoddiya610@gmail.com <span>Email →</span>
-      </a>
-      <a href="https://github.com/Diya186" class="contact-link" target="_blank">
-        github.com/Diya186 <span>GitHub →</span>
-      </a>
-      <a href="https://linkedin.com/in/diyarathod" class="contact-link" target="_blank">
-        linkedin.com/in/diyarathod <span>LinkedIn →</span>
-      </a>
-      <a href="https://tryhackme.com" class="contact-link" target="_blank">
-        TryHackMe Profile <span>Security →</span>
-      </a>
+      <a href="mailto:rathoddiya610@gmail.com" class="contact-link">rathoddiya610@gmail.com<span>Email →</span></a>
+      <a href="https://github.com/Diya186" class="contact-link" target="_blank">github.com/Diya186<span>GitHub →</span></a>
+      <a href="https://www.linkedin.com/in/diya-rathod-571a55302/" class="contact-link" target="_blank">linkedin.com/in/diya-rathod<span>LinkedIn →</span></a>
+      <a href="https://tryhackme.com" class="contact-link" target="_blank">TryHackMe Profile<span>Security →</span></a>
     </div>
   </div>
 </section>
