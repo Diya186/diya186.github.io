@@ -41,7 +41,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 /* HERO */
 #hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:flex-start;}
 .hero-bg{position:absolute;inset:0;will-change:transform;}
-.hero-bg img{width:100%;height:115%;object-fit:cover;object-position:center center;filter:grayscale(100%) brightness(0.35);display:block;}
+.hero-bg img{width:100%;height:115%;object-fit:cover;object-position:top center;filter:grayscale(100%) brightness(0.25);display:block;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(5,5,5,0.95) 40%,rgba(5,5,5,0.3));}
 .hero-content{position:relative;z-index:2;padding:0 4rem;max-width:900px;}
 .hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--pink);text-transform:uppercase;margin-bottom:2rem;opacity:0;}
@@ -84,21 +84,31 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .section-intro-right{font-size:13px;color:var(--gray);line-height:1.9;}
 
 /* VIDEO ITEMS */
-.reel-item{display:grid;grid-template-columns:55% 45%;border-bottom:1px solid #111;overflow:hidden;}
-.reel-item:nth-child(even){grid-template-columns:45% 55%;}
-.reel-item:nth-child(even) .reel-vid{order:2;}
-.reel-item:nth-child(even) .reel-meta{order:1;}
-.reel-vid{position:relative;overflow:hidden;background:#0a0a0a;aspect-ratio:16/9;}
-.reel-vid iframe{width:100%;height:100%;border:none;display:block;transition:transform 0.6s ease;}
-.reel-vid:hover iframe{transform:scale(1.03);}
-.reel-vid-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(233,30,140,0.08),transparent);pointer-events:none;opacity:0;transition:opacity 0.4s;}
-.reel-vid:hover .reel-vid-overlay{opacity:1;}
-.reel-meta{padding:4rem;display:flex;flex-direction:column;justify-content:center;position:relative;}
-.reel-meta::before{content:attr(data-num);position:absolute;top:3rem;right:3rem;font-family:'Playfair Display',serif;font-size:6rem;font-weight:900;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none;}
-.reel-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.22em;color:var(--gray);margin-bottom:1.5rem;text-transform:uppercase;}
-.reel-meta h3{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.05;margin-bottom:1.2rem;}
+
+/* REEL 1 - HORIZONTAL */
+.reel-horizontal{border-bottom:1px solid #111;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.reel-horizontal .reel-vid{position:relative;overflow:hidden;background:#0a0a0a;aspect-ratio:16/9;}
+.reel-horizontal .reel-vid iframe{width:100%;height:100%;border:none;display:block;}
+.reel-horizontal .reel-vid-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(233,30,140,0.08),transparent);pointer-events:none;opacity:0;transition:opacity 0.4s;}
+.reel-horizontal .reel-vid:hover .reel-vid-overlay{opacity:1;}
+.reel-horizontal .reel-meta{padding:4rem;display:flex;flex-direction:column;justify-content:center;position:relative;border-left:1px solid #111;}
+.reel-horizontal .reel-meta::before{content:attr(data-num);position:absolute;top:2rem;right:2rem;font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none;}
+
+/* REELS 2&3 - VERTICAL PAIR */
+.reel-vertical-pair{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #111;border-top:1px solid #111;}
+.reel-vertical-card{display:flex;flex-direction:column;border-right:1px solid #111;}
+.reel-vertical-card:last-child{border-right:none;}
+.reel-vertical-card .reel-vid{position:relative;overflow:hidden;background:#0a0a0a;aspect-ratio:9/16;max-height:70vh;}
+.reel-vertical-card .reel-vid iframe{width:100%;height:100%;border:none;display:block;}
+.reel-vertical-card .reel-vid-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(233,30,140,0.08),transparent);pointer-events:none;opacity:0;transition:opacity 0.4s;}
+.reel-vertical-card .reel-vid:hover .reel-vid-overlay{opacity:1;}
+.reel-vertical-card .reel-meta{padding:2.5rem;flex:1;}
+
+/* SHARED REEL META */
+.reel-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.22em;color:var(--gray);margin-bottom:1rem;text-transform:uppercase;}
+.reel-meta h3{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2.5rem);font-weight:900;line-height:1.05;margin-bottom:1rem;}
 .reel-meta h3 em{font-style:italic;color:var(--pink);}
-.reel-meta p{font-size:13px;color:var(--gray);line-height:1.9;margin-bottom:2rem;max-width:320px;}
+.reel-meta p{font-size:12px;color:var(--gray);line-height:1.9;margin-bottom:1.5rem;max-width:320px;}
 .reel-pills{display:flex;flex-wrap:wrap;gap:0.5rem;}
 .reel-pill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;border:1px solid #222;padding:0.3rem 0.75rem;text-transform:uppercase;color:var(--gray);transition:all 0.3s;}
 .reel-pill:hover,.reel-pill.pink{border-color:var(--pink);color:var(--pink);}
@@ -263,7 +273,8 @@ footer a{color:var(--pink);text-decoration:none;}
     <p class="section-intro-right">Edited in CapCut. Built with an eye for rhythm, storytelling, and visual flow. This is the creative side of a CS student who refuses to be just one thing.</p>
   </div>
 
-  <div class="reel-item" data-num="01">
+  <!-- REEL 1 - HORIZONTAL -->
+  <div class="reel-horizontal reel-item">
     <div class="reel-vid">
       <iframe src="https://drive.google.com/file/d/1amQH7BNJyb5TXjbGJN_WbH0EDKIBrZtU/preview" allow="autoplay" allowfullscreen></iframe>
       <div class="reel-vid-overlay"></div>
@@ -280,36 +291,38 @@ footer a{color:var(--pink);text-decoration:none;}
     </div>
   </div>
 
-  <div class="reel-item" data-num="02">
-    <div class="reel-vid">
-      <iframe src="https://drive.google.com/file/d/13CbN1zuYks95zGkBoy-ZWvafCyjwdrKS/preview" allow="autoplay" allowfullscreen></iframe>
-      <div class="reel-vid-overlay"></div>
-    </div>
-    <div class="reel-meta" data-num="02">
-      <p class="reel-num">Reel No. 02</p>
-      <h3>The <em>Mood</em></h3>
-      <p>An aesthetic montage exploring colour, texture, and pacing. The kind of reel that makes you feel something before you understand why.</p>
-      <div class="reel-pills">
-        <span class="reel-pill pink">Aesthetic</span>
-        <span class="reel-pill">Colour Grading</span>
-        <span class="reel-pill">Montage</span>
+  <!-- REELS 2 & 3 - VERTICAL PAIR -->
+  <div class="reel-vertical-pair reel-item">
+    <div class="reel-vertical-card">
+      <div class="reel-vid">
+        <iframe src="https://drive.google.com/file/d/13CbN1zuYks95zGkBoy-ZWvafCyjwdrKS/preview" allow="autoplay" allowfullscreen></iframe>
+        <div class="reel-vid-overlay"></div>
+      </div>
+      <div class="reel-meta">
+        <p class="reel-num">Reel No. 02</p>
+        <h3>The <em>Mood</em></h3>
+        <p>An aesthetic montage exploring colour, texture, and pacing. The kind of reel that makes you feel something before you understand why.</p>
+        <div class="reel-pills">
+          <span class="reel-pill pink">Aesthetic</span>
+          <span class="reel-pill">Colour Grading</span>
+          <span class="reel-pill">Montage</span>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="reel-item" data-num="03">
-    <div class="reel-vid">
-      <iframe src="https://drive.google.com/file/d/1VS6yFGGTNE2mFbxSsvd-MepCcDJciD3-/preview" allow="autoplay" allowfullscreen></iframe>
-      <div class="reel-vid-overlay"></div>
-    </div>
-    <div class="reel-meta" data-num="03">
-      <p class="reel-num">Reel No. 03</p>
-      <h3>The <em>Story</em></h3>
-      <p>Narrative-driven editing that turns raw footage into a sequence with a beginning, middle, and end. Good editing is just good writing.</p>
-      <div class="reel-pills">
-        <span class="reel-pill pink">Narrative</span>
-        <span class="reel-pill">Sound Sync</span>
-        <span class="reel-pill">CapCut</span>
+    <div class="reel-vertical-card">
+      <div class="reel-vid">
+        <iframe src="https://drive.google.com/file/d/1VS6yFGGTNE2mFbxSsvd-MepCcDJciD3-/preview" allow="autoplay" allowfullscreen></iframe>
+        <div class="reel-vid-overlay"></div>
+      </div>
+      <div class="reel-meta">
+        <p class="reel-num">Reel No. 03</p>
+        <h3>The <em>Story</em></h3>
+        <p>Narrative-driven editing that turns raw footage into a sequence with a beginning, middle, and end. Good editing is just good writing.</p>
+        <div class="reel-pills">
+          <span class="reel-pill pink">Narrative</span>
+          <span class="reel-pill">Sound Sync</span>
+          <span class="reel-pill">CapCut</span>
+        </div>
       </div>
     </div>
   </div>
@@ -491,9 +504,6 @@ gsap.to('#heroBg',{
 // ── REEL ITEMS ──
 gsap.utils.toArray('.reel-item').forEach((item,i)=>{
   gsap.from(item,{opacity:0,y:80,duration:1,ease:'power3.out',
-    scrollTrigger:{trigger:item,start:'top 85%',toggleActions:'play none none none'}
-  });
-  gsap.from(item.querySelector('.reel-meta'),{x:i%2===0?60:-60,opacity:0,duration:1,delay:0.2,ease:'power3.out',
     scrollTrigger:{trigger:item,start:'top 85%',toggleActions:'play none none none'}
   });
 });
