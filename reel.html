@@ -5,55 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>DIYA RATHOD</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,900&family=Inter:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-
-<!-- GSAP + Plugins -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-
-<!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-<!-- Lenis smooth scroll -->
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.9/dist/lenis.min.js"></script>
-
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--black:#050505;--white:#f0f0f0;--pink:#e91e8c;--gray:#444;}
 html{overflow-x:hidden;}
 body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none;}
-
-/* GRAIN */
 body::after{content:'';position:fixed;inset:-50%;width:200%;height:200%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");opacity:0.03;pointer-events:none;z-index:8000;animation:grain 0.5s steps(2) infinite;}
 @keyframes grain{0%{transform:translate(0,0);}20%{transform:translate(-3%,-3%);}40%{transform:translate(3%,3%);}60%{transform:translate(-3%,3%);}80%{transform:translate(3%,-3%);}100%{transform:translate(0,0);}}
-
-/* PROGRESS BAR */
 #progressBar{position:fixed;top:0;left:0;height:2px;background:var(--pink);width:0%;z-index:9999;opacity:0.7;}
-
-/* CURSOR */
 .cursor{position:fixed;width:8px;height:8px;background:var(--pink);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);mix-blend-mode:screen;}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(233,30,140,0.5);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);}
 .cursor.big{width:48px;height:48px;background:transparent;border:1px solid var(--pink);}
 .cursor-ring.big{width:64px;height:64px;}
-
-/* SPARKLES */
 .sparkle{position:fixed;pointer-events:none;z-index:9996;animation:sp 0.9s forwards;transform:translate(-50%,-50%);}
 @keyframes sp{0%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0deg);}100%{opacity:0;transform:translate(-50%,-250%) scale(0) rotate(180deg);}}
-
-/* RIPPLE */
 .ripple{position:fixed;border-radius:50%;pointer-events:none;z-index:9995;transform:translate(-50%,-50%) scale(0);border:1.5px solid var(--pink);animation:rp 0.8s forwards;}
 @keyframes rp{to{transform:translate(-50%,-50%) scale(8);opacity:0;}}
 
 /* LOADER */
 #loader{position:fixed;inset:0;background:var(--black);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;}
 .loader-letters{display:flex;gap:0.02em;margin-bottom:2rem;}
-.loader-letter{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,8rem);font-weight:900;color:var(--white);display:inline-block;transform:translateY(0) rotate(0deg);opacity:1;}
+.loader-letter{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,8rem);font-weight:900;color:var(--white);display:inline-block;opacity:1;}
 .loader-bar-wrap{width:280px;height:1px;background:#111;}
-.loader-bar-fill{height:100%;background:var(--pink);width:0%;}
+.loader-bar-fill{height:100%;background:var(--pink);width:0%;transition:width 0.1s linear;}
 .loader-pct{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--gray);margin-top:1rem;}
-
-/* THREE.JS CANVAS */
-#threeCanvas{position:absolute;inset:0;z-index:1;pointer-events:none;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;mix-blend-mode:difference;}
@@ -64,7 +43,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 
 /* HERO */
 #hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;}
-#threeCanvas{position:absolute;inset:0;z-index:1;}
+#threeCanvas{position:absolute;inset:0;z-index:1;pointer-events:none;}
 .hero-bg{position:absolute;inset:0;z-index:0;}
 .hero-bg img{width:100%;height:115%;object-fit:cover;object-position:center 30%;filter:grayscale(100%) brightness(0.2);display:block;opacity:0;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(5,5,5,0.97) 40%,rgba(5,5,5,0.5));z-index:1;}
@@ -100,20 +79,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .mq-item:hover{color:var(--white);-webkit-text-stroke:0;}
 @keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* FILM STRIP SECTION */
+/* REELS */
 #reels{padding:6rem 0;border-top:1px solid #0e0e0e;}
 .reels-header{padding:0 4rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;}
 .eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.25em;color:var(--pink);text-transform:uppercase;margin-bottom:1rem;}
 .reels-header h2{font-family:'Playfair Display',serif;font-size:clamp(3rem,5vw,4.5rem);font-weight:900;line-height:0.95;}
 .reels-header h2 em{font-style:italic;color:var(--pink);}
 .reels-header-right{font-size:13px;color:var(--gray);line-height:1.9;}
-
-/* CANVAS FILM STRIP */
 #filmCanvas{display:block;width:100%;cursor:grab;}
 #filmCanvas:active{cursor:grabbing;}
 .film-hint{text-align:center;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--gray);text-transform:uppercase;padding:1.5rem 0;border-top:1px solid #0e0e0e;}
-
-
 
 /* GLITCH */
 .glitch-section{padding:8rem 4rem;text-align:center;border-top:1px solid #0e0e0e;border-bottom:1px solid #0e0e0e;}
@@ -132,17 +107,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .about-right img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(100%) brightness(0.45);display:block;transition:filter 0.8s ease;}
 .about-right:hover img{filter:grayscale(0%) brightness(0.6);}
 .about-right-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--black) 0%,transparent 60%);}
-
-/* WebGL canvas overlay on about image */
 #webglCanvas{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity 0.4s;}
 .about-right:hover #webglCanvas{opacity:1;}
-
 .about-quote{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.2;margin-bottom:2rem;}
 .about-quote em{font-style:italic;color:var(--pink);}
 .about-text{font-size:16px;color:var(--gray);line-height:2;margin-bottom:3rem;}
-.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;border-top:1px solid #0e0e0e;padding-top:2rem;}
-.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--pink);line-height:1;}
-.stat-lbl{font-size:10px;color:var(--gray);letter-spacing:0.05em;margin-top:0.2rem;}
+
+/* STATS — fixed visibility */
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;border-top:1px solid #222;padding-top:2rem;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--pink);line-height:1;display:block;}
+.stat-lbl{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.05em;margin-top:0.4rem;display:block;}
 
 /* SKILLS */
 #skills{padding:6rem 4rem;border-top:1px solid #0e0e0e;}
@@ -174,7 +148,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .c-link span{font-family:'DM Mono',monospace;font-size:9px;color:var(--gray);}
 .mag-switch{display:inline-flex;align-items:center;gap:0.75rem;margin-top:3rem;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);text-decoration:none;border:1px solid #141414;padding:0.8rem 1.5rem;transition:all 0.3s;}
 .mag-switch:hover{border-color:var(--white);color:var(--white);}
-
 footer{padding:2rem 4rem;border-top:1px solid #0e0e0e;display:flex;justify-content:space-between;align-items:center;}
 footer p{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#222;}
 footer a{color:var(--pink);text-decoration:none;}
@@ -187,7 +160,6 @@ footer a{color:var(--pink);text-decoration:none;}
   #about,.contact-inner{grid-template-columns:1fr;}
   .about-right{min-height:350px;}
   .about-left{padding:3rem 1.5rem;border-right:none;border-bottom:1px solid #0e0e0e;}
-  #reelPanel{grid-template-columns:1fr;padding:2rem 1.5rem;}
   footer{flex-direction:column;gap:1rem;text-align:center;padding:1.5rem;}
 }
 @media(prefers-reduced-motion:reduce){
@@ -205,7 +177,7 @@ footer a{color:var(--pink);text-decoration:none;}
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-letters" id="loaderLetters">
+  <div class="loader-letters">
     <span class="loader-letter">D</span><span class="loader-letter">I</span><span class="loader-letter">Y</span><span class="loader-letter">A</span>
     <span class="loader-letter" style="margin-left:0.3em;font-style:italic;">R</span><span class="loader-letter" style="font-style:italic;">a</span><span class="loader-letter" style="font-style:italic;">t</span><span class="loader-letter" style="font-style:italic;">h</span><span class="loader-letter" style="font-style:italic;">o</span><span class="loader-letter" style="font-style:italic;">d</span>
   </div>
@@ -213,7 +185,6 @@ footer a{color:var(--pink);text-decoration:none;}
   <div class="loader-pct" id="loaderPct">0%</div>
 </div>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Diya Rathod</a>
   <ul class="nav-links">
@@ -225,7 +196,6 @@ footer a{color:var(--pink);text-decoration:none;}
   <a class="nav-back" href="index.html">← Magazine</a>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <canvas id="threeCanvas"></canvas>
   <div class="hero-bg"><img src="diya.jpg" alt="Diya Rathod" id="heroImg"/></div>
@@ -248,7 +218,6 @@ footer a{color:var(--pink);text-decoration:none;}
   </div>
 </section>
 
-<!-- MARQUEE 1 -->
 <div class="marquee">
   <div class="marquee-track">
     <span class="mq-item">Cybersecurity</span><span class="mq-item pk">✦</span><span class="mq-item">Android Dev</span><span class="mq-item pk">✦</span><span class="mq-item">Machine Learning</span><span class="mq-item pk">✦</span><span class="mq-item">Penetration Testing</span><span class="mq-item pk">✦</span><span class="mq-item">Graphic Design</span><span class="mq-item pk">✦</span><span class="mq-item">Video Editing</span><span class="mq-item pk">✦</span>
@@ -256,7 +225,6 @@ footer a{color:var(--pink);text-decoration:none;}
   </div>
 </div>
 
-<!-- REELS - FILM STRIP -->
 <section id="reels">
   <div class="reels-header">
     <div>
@@ -265,20 +233,15 @@ footer a{color:var(--pink);text-decoration:none;}
     </div>
     <p class="reels-header-right">Edited in CapCut. Drag the film strip to explore. Click any frame to watch.</p>
   </div>
-
-  <canvas id="filmCanvas" height="280"></canvas>
+  <canvas id="filmCanvas" height="300"></canvas>
   <p class="film-hint">← drag to explore the film strip →</p>
-
-
 </section>
 
-<!-- GLITCH -->
 <div class="glitch-section">
   <h2 class="glitch-title" data-text="CS FIRST.">CS FIRST.</h2>
   <p class="glitch-sub">Creative is the bonus · Code is the foundation</p>
 </div>
 
-<!-- MARQUEE 2 -->
 <div class="marquee">
   <div class="marquee-track rev">
     <span class="mq-item">Kali Linux</span><span class="mq-item pk">✦</span><span class="mq-item">OWASP Top 10</span><span class="mq-item pk">✦</span><span class="mq-item">Python</span><span class="mq-item pk">✦</span><span class="mq-item">Android Studio</span><span class="mq-item pk">✦</span><span class="mq-item">scikit-learn</span><span class="mq-item pk">✦</span><span class="mq-item">Git & GitHub</span><span class="mq-item pk">✦</span>
@@ -286,7 +249,6 @@ footer a{color:var(--pink);text-decoration:none;}
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-left">
     <div>
@@ -295,9 +257,18 @@ footer a{color:var(--pink);text-decoration:none;}
     </div>
     <p class="about-text">I'm Diya — a second-year CS student at UoWD Dubai, originally from India. I build penetration tests and Android apps by day, edit reels and crochet by night.<br/><br/>Looking for internships where I can learn something new every day and build things that matter.</p>
     <div class="about-stats">
-      <div><div class="stat-num counter" data-target="2" data-suffix="nd">0</div><div class="stat-lbl">Year CS Student</div></div>
-      <div><div class="stat-num counter" data-target="6" data-suffix="+">0</div><div class="stat-lbl">Skill Domains</div></div>
-      <div><div class="stat-num counter" data-target="3" data-suffix="">0</div><div class="stat-lbl">Languages Spoken</div></div>
+      <div>
+        <span class="stat-num" id="stat1">0</span>
+        <span class="stat-lbl">Year CS Student</span>
+      </div>
+      <div>
+        <span class="stat-num" id="stat2">0</span>
+        <span class="stat-lbl">Skill Domains</span>
+      </div>
+      <div>
+        <span class="stat-num" id="stat3">0</span>
+        <span class="stat-lbl">Languages Spoken</span>
+      </div>
     </div>
   </div>
   <div class="about-right">
@@ -307,13 +278,11 @@ footer a{color:var(--pink);text-decoration:none;}
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="skills-header">
     <p class="eyebrow">Expertise</p>
     <h2>Skills <em>&</em> Tools</h2>
   </div>
-
   <div class="skill-group"><div class="skill-group-label">🔐 Cybersecurity</div><div class="skill-pills-row"><span class="s-pill star">Kali Linux</span><span class="s-pill star">Metasploit</span><span class="s-pill star">Penetration Testing</span><span class="s-pill star">OWASP Top 10</span><span class="s-pill hot">SQL Injection</span><span class="s-pill hot">XSS</span><span class="s-pill hot">CSRF</span><span class="s-pill">Command Injection</span><span class="s-pill">DVWA</span><span class="s-pill">Juice Shop</span></div></div>
   <div class="skill-group"><div class="skill-group-label">📱 Android & Development</div><div class="skill-pills-row"><span class="s-pill star">Android Studio</span><span class="s-pill star">Kotlin</span><span class="s-pill star">Java</span><span class="s-pill hot">Python</span><span class="s-pill hot">SQL</span><span class="s-pill hot">HTML & CSS</span><span class="s-pill star">Git & GitHub</span><span class="s-pill">RecyclerView</span></div></div>
   <div class="skill-group"><div class="skill-group-label">🤖 Data Science & ML</div><div class="skill-pills-row"><span class="s-pill star">scikit-learn</span><span class="s-pill star">Jupyter Notebook</span><span class="s-pill hot">PCA & t-SNE</span><span class="s-pill hot">TF-IDF</span><span class="s-pill">ML Pipelines</span></div></div>
@@ -322,7 +291,6 @@ footer a{color:var(--pink);text-decoration:none;}
   <div class="skill-group"><div class="skill-group-label">🗣️ Soft Skills & Languages</div><div class="skill-pills-row"><span class="s-pill hot">Public Speaking</span><span class="s-pill hot">Leadership</span><span class="s-pill">Teamwork</span><span class="s-pill star">English</span><span class="s-pill star">Gujarati</span><span class="s-pill star">Hindi</span></div></div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-bg-text">DIYA RATHOD</div>
   <div class="contact-inner">
@@ -350,154 +318,96 @@ footer a{color:var(--pink);text-decoration:none;}
 </footer>
 
 <script>
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
-// ══════════════════════════════════════════
-// LENIS SMOOTH SCROLL
-// ══════════════════════════════════════════
-const lenis = new Lenis({ duration:1.2, easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)), smoothWheel:true });
-function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-requestAnimationFrame(raf);
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(time => lenis.raf(time*1000));
-gsap.ticker.lagSmoothing(0);
+// ── LENIS ──
+try {
+  const lenis = new Lenis({ duration:1.2, easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)), smoothWheel:true });
+  function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+  lenis.on('scroll', ScrollTrigger.update);
+} catch(e){ console.warn('Lenis not loaded', e); }
 
-// ══════════════════════════════════════════
-// PROGRESS BAR
-// ══════════════════════════════════════════
-const bar = document.getElementById('progressBar');
+// ── PROGRESS BAR ──
 window.addEventListener('scroll', () => {
-  bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  document.getElementById('progressBar').style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
 });
 
-// ══════════════════════════════════════════
-// THREE.JS — PARTICLE FIELD IN HERO
-// ══════════════════════════════════════════
-const threeCanvas = document.getElementById('threeCanvas');
-const renderer = new THREE.WebGLRenderer({ canvas:threeCanvas, alpha:true });
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-camera.position.z = 3;
-
-const particleCount = 1800;
-const positions = new Float32Array(particleCount * 3);
-const colors = new Float32Array(particleCount * 3);
-for(let i=0; i<particleCount; i++){
-  positions[i*3]   = (Math.random()-0.5)*10;
-  positions[i*3+1] = (Math.random()-0.5)*10;
-  positions[i*3+2] = (Math.random()-0.5)*5;
-  const isPink = Math.random() > 0.7;
-  colors[i*3]   = isPink ? 0.91 : 0.3;
-  colors[i*3+1] = isPink ? 0.12 : 0.3;
-  colors[i*3+2] = isPink ? 0.55 : 0.3;
-}
-const geo = new THREE.BufferGeometry();
-geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-const mat = new THREE.PointsMaterial({ size:0.015, vertexColors:true, transparent:true, opacity:0.7 });
-const particles = new THREE.Points(geo, mat);
-scene.add(particles);
-
-let mx3=0, my3=0;
-document.addEventListener('mousemove', e => {
-  mx3 = (e.clientX/window.innerWidth - 0.5) * 0.5;
-  my3 = (e.clientY/window.innerHeight - 0.5) * 0.5;
-});
-function animateThree(){
-  requestAnimationFrame(animateThree);
-  particles.rotation.y += 0.0005 + mx3*0.002;
-  particles.rotation.x += 0.0002 + my3*0.001;
-  renderer.render(scene, camera);
-}
-animateThree();
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
+// ── THREE.JS PARTICLES ──
+try {
+  const threeCanvas = document.getElementById('threeCanvas');
+  const renderer = new THREE.WebGLRenderer({ canvas:threeCanvas, alpha:true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(window.innerWidth, window.innerHeight);
-});
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  camera.position.z = 3;
+  const count = 1500;
+  const pos = new Float32Array(count*3);
+  const col = new Float32Array(count*3);
+  for(let i=0;i<count;i++){
+    pos[i*3]=(Math.random()-0.5)*10; pos[i*3+1]=(Math.random()-0.5)*10; pos[i*3+2]=(Math.random()-0.5)*5;
+    const pk=Math.random()>0.7;
+    col[i*3]=pk?0.91:0.3; col[i*3+1]=pk?0.12:0.3; col[i*3+2]=pk?0.55:0.3;
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const pts=new THREE.Points(geo,new THREE.PointsMaterial({size:0.015,vertexColors:true,transparent:true,opacity:0.7}));
+  scene.add(pts);
+  let mx3=0,my3=0;
+  document.addEventListener('mousemove',e=>{ mx3=(e.clientX/window.innerWidth-0.5)*0.5; my3=(e.clientY/window.innerHeight-0.5)*0.5; });
+  (function anim(){ requestAnimationFrame(anim); pts.rotation.y+=0.0005+mx3*0.002; pts.rotation.x+=0.0002+my3*0.001; renderer.render(scene,camera); })();
+  window.addEventListener('resize',()=>{ camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight); });
+} catch(e){ console.warn('Three.js error',e); }
 
-// ══════════════════════════════════════════
-// CURSOR
-// ══════════════════════════════════════════
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
+// ── CURSOR ──
+const cur=document.getElementById('cursor'), ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
-(function follow(){ rx+=(mx-rx)*0.08; ry+=(my-ry)*0.08; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(follow); })();
-document.querySelectorAll('a,.reel-info-card,.mag-btn,.s-pill').forEach(el => {
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function f(){ rx+=(mx-rx)*0.08; ry+=(my-ry)*0.08; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(f); })();
+document.querySelectorAll('a,.mag-btn,.s-pill').forEach(el=>{
   el.addEventListener('mouseenter',()=>{ cur.classList.add('big'); ring.classList.add('big'); });
   el.addEventListener('mouseleave',()=>{ cur.classList.remove('big'); ring.classList.remove('big'); });
 });
 
-// ══════════════════════════════════════════
-// SPARKLE TRAIL
-// ══════════════════════════════════════════
+// ── SPARKLES ──
 const sparks=['✦','★','✸','✺','⋆','·','✼','◆'];
 let lastSp=0;
-document.addEventListener('mousemove', e => {
-  if(Date.now()-lastSp < 80) return;
-  lastSp=Date.now();
+document.addEventListener('mousemove',e=>{
+  if(Date.now()-lastSp<80) return; lastSp=Date.now();
   const s=document.createElement('div');
-  s.className='sparkle';
-  s.textContent=sparks[Math.floor(Math.random()*sparks.length)];
+  s.className='sparkle'; s.textContent=sparks[Math.floor(Math.random()*sparks.length)];
   s.style.left=e.clientX+'px'; s.style.top=e.clientY+'px';
   s.style.color=Math.random()>0.5?'var(--pink)':'rgba(255,255,255,0.5)';
   s.style.fontSize=(7+Math.random()*9)+'px';
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),900);
+  document.body.appendChild(s); setTimeout(()=>s.remove(),900);
 });
 
-// ══════════════════════════════════════════
-// CLICK RIPPLE
-// ══════════════════════════════════════════
-document.addEventListener('click', e => {
+// ── CLICK RIPPLE ──
+document.addEventListener('click',e=>{
   const r=document.createElement('div');
-  r.className='ripple'; r.style.left=e.clientX+'px'; r.style.top=e.clientY+'px';
-  r.style.width=r.style.height='30px';
-  document.body.appendChild(r);
-  setTimeout(()=>r.remove(),800);
+  r.className='ripple'; r.style.left=e.clientX+'px'; r.style.top=e.clientY+'px'; r.style.width=r.style.height='30px';
+  document.body.appendChild(r); setTimeout(()=>r.remove(),800);
 });
 
-// ══════════════════════════════════════════
-// LOADER — reliable version
-// ══════════════════════════════════════════
-const letters=document.querySelectorAll('.loader-letter');
-const fill=document.getElementById('loaderFill');
-const pctEl=document.getElementById('loaderPct');
-
-// Show letters immediately without animation first
-letters.forEach(l=>{ l.style.transform='translateY(0)'; l.style.opacity='1'; l.style.transition='transform 0.6s ease, opacity 0.6s ease'; });
-
-// Then animate them in after a tiny delay
-setTimeout(()=>{
-  letters.forEach((l,i)=>{
-    l.style.transform='translateY(0) rotate(0deg)';
-    l.style.opacity='1';
-  });
-},50);
-
+// ── LOADER ──
+const fill=document.getElementById('loaderFill'), pctEl=document.getElementById('loaderPct');
 let p=0;
 const iv=setInterval(()=>{
-  p+=Math.random()*4+3;
-  if(p>=100){p=100;clearInterval(iv);endLoad();}
-  fill.style.width=p+'%';
-  pctEl.textContent=Math.floor(p)+'%';
+  p+=Math.random()*4+3; if(p>=100){p=100;clearInterval(iv);endLoad();}
+  fill.style.width=p+'%'; pctEl.textContent=Math.floor(p)+'%';
 },60);
-
 function endLoad(){
   setTimeout(()=>{
-    gsap.to('#loader',{yPercent:-100,duration:1.1,ease:'power4.inOut',delay:0.2,onComplete:()=>{
+    gsap.to('#loader',{yPercent:-100,duration:1.1,ease:'power4.inOut',delay:0.3,onComplete:()=>{
       document.getElementById('loader').style.display='none';
       startHero();
     }});
   },400);
 }
 
-// ══════════════════════════════════════════
-// HERO ENTRANCE
-// ══════════════════════════════════════════
+// ── HERO ──
 function startHero(){
   gsap.to('#heroImg',{opacity:1,duration:2,ease:'power2.out'});
   gsap.to('#heroEyebrow',{opacity:1,duration:0.8,delay:0.3,ease:'power3.out'});
@@ -508,9 +418,7 @@ function startHero(){
   gsap.to('#heroScroll',{opacity:1,duration:0.8,delay:2.2,ease:'power3.out'});
 }
 
-// ══════════════════════════════════════════
-// TYPEWRITER
-// ══════════════════════════════════════════
+// ── TYPEWRITER ──
 const phrases=['Building worlds through code.','CS Student · UoWD Dubai.','Cybersecurity · Android · ML.','Creative by passion. Technical by choice.'];
 let pi=0,ci=0,del=false;
 const typeEl=document.getElementById('typeText');
@@ -521,316 +429,274 @@ function typeWriter(){
   setTimeout(typeWriter,del?40:70);
 }
 
-// ══════════════════════════════════════════
-// PARALLAX HERO
-// ══════════════════════════════════════════
+// ── PARALLAX ──
 gsap.to('.hero-bg',{yPercent:25,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
 
-// ══════════════════════════════════════════
-// CANVAS FILM STRIP
-// ══════════════════════════════════════════
+// ── FILM STRIP ──
 const fc=document.getElementById('filmCanvas');
 const ctx=fc.getContext('2d');
-fc.width=fc.offsetWidth;
-const FRAME_W=fc.width/3.2, FRAME_H=240, STRIP_H=280;
-const SPROCKET=12, SPROCKET_GAP=28;
-const reels=[
-  {title:'The Edit',num:'01',url:'https://drive.google.com/file/d/1amQH7BNJyb5TXjbGJN_WbH0EDKIBrZtU/view',thumb:null,color:'#e91e8c'},
-  {title:'The Mood',num:'02',url:'https://drive.google.com/file/d/13CbN1zuYks95zGkBoy-ZWvafCyjwdrKS/view',thumb:null,color:'#e91e8c'},
-  {title:'The Story',num:'03',url:'https://drive.google.com/file/d/1VS6yFGGTNE2mFbxSsvd-MepCcDJciD3-/view',thumb:null,color:'#e91e8c'},
+const STRIP_H=300;
+fc.width=fc.offsetWidth||window.innerWidth;
+fc.height=STRIP_H;
+
+const FRAME_W=fc.width/3.2;
+const FRAME_H=240;
+const SPROCKET_GAP=28, SPROCKET_W=12, SPROCKET_H=14;
+
+const reelData=[
+  {title:'The Edit',sub:'Cinematic · Transitions · Beat',num:'01',url:'https://drive.google.com/file/d/1amQH7BNJyb5TXjbGJN_WbH0EDKIBrZtU/view',img:null,colors:['#1a0010','#0d0008']},
+  {title:'The Mood',sub:'Aesthetic · Colour · Pacing',num:'02',url:'https://drive.google.com/file/d/13CbN1zuYks95zGkBoy-ZWvafCyjwdrKS/view',img:null,colors:['#08001a','#03000d']},
+  {title:'The Story',sub:'Narrative · Sound · Emotion',num:'03',url:'https://drive.google.com/file/d/1VS6yFGGTNE2mFbxSsvd-MepCcDJciD3-/view',img:null,colors:['#001018','#00060c']},
 ];
-// Load thumbnails
-reels.forEach((r,i)=>{
+
+// Try loading thumbnails
+reelData.forEach(r=>{
+  const id=r.url.split('/d/')[1].split('/')[0];
   const img=new Image();
   img.crossOrigin='anonymous';
-  img.src=`https://drive.google.com/thumbnail?id=${r.url.split('/d/')[1].split('/')[0]}&sz=w600`;
-  img.onload=()=>{r.thumb=img;drawFilm();};
-  img.onerror=()=>{drawFilm();};
+  img.onload=()=>{r.img=img;};
+  img.onerror=()=>{};
+  img.src=`https://drive.google.com/thumbnail?id=${id}&sz=w800`;
 });
 
-let filmOffset=0, targetOffset=0, isDragging=false, dragStart=0, dragOrigin=0, activeFrame=-1;
-const TOTAL_W=(FRAME_W+40)*reels.length+fc.width;
+let filmOff=0,targOff=0,dragging=false,dragSt=0,dragOrig=0,activeF=-1;
+
+function roundRect(c,x,y,w,h,r){
+  c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);
+  c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);
+  c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();
+}
 
 function drawFilm(){
   ctx.clearRect(0,0,fc.width,STRIP_H);
-  // Film strip background
-  ctx.fillStyle='#0a0a0a';
-  ctx.fillRect(0,0,fc.width,STRIP_H);
-  // Top and bottom film borders
-  ctx.fillStyle='#111';
-  ctx.fillRect(0,0,fc.width,30);
-  ctx.fillRect(0,STRIP_H-30,fc.width,30);
-  // Sprocket holes
-  ctx.fillStyle='#000';
-  for(let x=0;x<fc.width;x+=SPROCKET_GAP){
-    // Top
-    roundRect(ctx,x+4,8,SPROCKET,14,3);
-    ctx.fill();
-    // Bottom
-    roundRect(ctx,x+4,STRIP_H-22,SPROCKET,14,3);
-    ctx.fill();
-  }
-  // Draw frames
-  reels.forEach((r,i)=>{
-    const x=filmOffset+i*(FRAME_W+40)+40;
-    const y=35;
-    const isActive=i===activeFrame;
-    // Frame border
-    ctx.strokeStyle=isActive?'#e91e8c':'#222';
-    ctx.lineWidth=isActive?2:1;
-    ctx.strokeRect(x,y,FRAME_W,FRAME_H);
-    // Thumbnail or gradient placeholder
-    if(r.thumb){
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(x,y,FRAME_W,FRAME_H);
-      ctx.clip();
-      ctx.drawImage(r.thumb,x,y,FRAME_W,FRAME_H);
-      ctx.restore();
-      // Dark overlay
-      ctx.fillStyle=isActive?'rgba(233,30,140,0.15)':'rgba(0,0,0,0.5)';
-      ctx.fillRect(x,y,FRAME_W,FRAME_H);
-    } else {
-      // Placeholder gradient
-      const grad=ctx.createLinearGradient(x,y,x+FRAME_W,y+FRAME_H);
-      grad.addColorStop(0,'#111');
-      grad.addColorStop(1,'#0a0a0a');
-      ctx.fillStyle=grad;
-      ctx.fillRect(x,y,FRAME_W,FRAME_H);
-    }
-    // Frame number
-    ctx.fillStyle='rgba(233,30,140,0.8)';
-    ctx.font='bold 10px "DM Mono", monospace';
-    ctx.letterSpacing='0.2em';
-    ctx.fillText('NO. '+r.num, x+12, y+22);
-    // Title
-    ctx.fillStyle=isActive?'#fff':'rgba(255,255,255,0.8)';
-    ctx.font=`${isActive?'italic ':''} bold ${isActive?22:18}px "Playfair Display", serif`;
-    ctx.fillText(r.title, x+12, y+FRAME_H-40);
-    // Click hint
-    ctx.fillStyle='rgba(233,30,140,0.6)';
-    ctx.font='9px "DM Mono", monospace';
-    ctx.fillText('CLICK TO WATCH ↗', x+12, y+FRAME_H-20);
-    // Corner marks (film frame corners)
-    ['tl','tr','bl','br'].forEach(corner=>{
-      const cx2=corner.includes('l')?x:x+FRAME_W;
-      const cy2=corner.includes('t')?y:y+FRAME_H;
-      const dx=corner.includes('l')?1:-1;
-      const dy=corner.includes('t')?1:-1;
-      ctx.strokeStyle=isActive?'#e91e8c':'#333';
-      ctx.lineWidth=1.5;
-      ctx.beginPath();
-      ctx.moveTo(cx2+dx*15,cy2);
-      ctx.lineTo(cx2,cy2);
-      ctx.lineTo(cx2,cy2+dy*15);
-      ctx.stroke();
-    });
-  });
-  // Edge fade
-  const fadeL=ctx.createLinearGradient(0,0,80,0);
-  fadeL.addColorStop(0,'#050505');fadeL.addColorStop(1,'transparent');
-  ctx.fillStyle=fadeL;ctx.fillRect(0,0,80,STRIP_H);
-  const fadeR=ctx.createLinearGradient(fc.width-80,0,fc.width,0);
-  fadeR.addColorStop(0,'transparent');fadeR.addColorStop(1,'#050505');
-  ctx.fillStyle=fadeR;ctx.fillRect(fc.width-80,0,80,STRIP_H);
-}
-function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);}
 
-// Film physics
-function animFilm(){
-  filmOffset+=(targetOffset-filmOffset)*0.08;
-  drawFilm();
-  requestAnimationFrame(animFilm);
+  // Background
+  ctx.fillStyle='#080808';
+  ctx.fillRect(0,0,fc.width,STRIP_H);
+
+  // Sprocket borders
+  ctx.fillStyle='#0f0f0f';
+  ctx.fillRect(0,0,fc.width,32);
+  ctx.fillRect(0,STRIP_H-32,fc.width,32);
+
+  // Sprocket holes
+  for(let x=8;x<fc.width;x+=SPROCKET_GAP){
+    roundRect(ctx,x,8,SPROCKET_W,SPROCKET_H,2);
+    ctx.fillStyle='#000'; ctx.fill();
+    ctx.strokeStyle='#1a1a1a'; ctx.lineWidth=0.5; ctx.stroke();
+    roundRect(ctx,x,STRIP_H-8-SPROCKET_H,SPROCKET_W,SPROCKET_H,2);
+    ctx.fillStyle='#000'; ctx.fill();
+    ctx.strokeStyle='#1a1a1a'; ctx.lineWidth=0.5; ctx.stroke();
+  }
+
+  // Frames
+  reelData.forEach((r,i)=>{
+    const x=filmOff+i*(FRAME_W+40)+40;
+    const y=(STRIP_H-FRAME_H)/2;
+    const active=i===activeF;
+
+    // Draw thumbnail or gradient cover
+    ctx.save();
+    roundRect(ctx,x,y,FRAME_W,FRAME_H,4);
+    ctx.clip();
+
+    if(r.img){
+      // Draw thumbnail
+      ctx.drawImage(r.img,x,y,FRAME_W,FRAME_H);
+      // Cinematic dark gradient over photo
+      const ov=ctx.createLinearGradient(x,y,x,y+FRAME_H);
+      ov.addColorStop(0,'rgba(0,0,0,0.05)');
+      ov.addColorStop(0.5,'rgba(0,0,0,0.3)');
+      ov.addColorStop(1,'rgba(0,0,0,0.92)');
+      ctx.fillStyle=ov; ctx.fillRect(x,y,FRAME_W,FRAME_H);
+      // Pink tint on active
+      if(active){ ctx.fillStyle='rgba(233,30,140,0.08)'; ctx.fillRect(x,y,FRAME_W,FRAME_H); }
+    } else {
+      // ── EDITORIAL COVER when no thumbnail ──
+      // Base gradient
+      const bg=ctx.createLinearGradient(x,y,x+FRAME_W,y+FRAME_H);
+      bg.addColorStop(0,r.colors[0]); bg.addColorStop(1,r.colors[1]);
+      ctx.fillStyle=bg; ctx.fillRect(x,y,FRAME_W,FRAME_H);
+
+      // Full bleed pink accent strip on left
+      const strip=ctx.createLinearGradient(x,y,x+8,y);
+      strip.addColorStop(0,'rgba(233,30,140,0.8)'); strip.addColorStop(1,'transparent');
+      ctx.fillStyle=strip; ctx.fillRect(x,y,8,FRAME_H);
+
+      // Large ghost number watermark
+      ctx.save();
+      ctx.globalAlpha=0.06;
+      ctx.fillStyle='#e91e8c';
+      ctx.font=`900 ${FRAME_H*0.75}px serif`;
+      ctx.textAlign='right';
+      ctx.fillText('0'+parseInt(r.num), x+FRAME_W-8, y+FRAME_H*0.85);
+      ctx.restore();
+
+      // Horizontal divider line
+      ctx.strokeStyle='rgba(233,30,140,0.25)'; ctx.lineWidth=0.5;
+      ctx.beginPath(); ctx.moveTo(x+16,y+FRAME_H*0.62); ctx.lineTo(x+FRAME_W-16,y+FRAME_H*0.62); ctx.stroke();
+
+      // Pink glow
+      const glow=ctx.createRadialGradient(x+FRAME_W*0.5,y+FRAME_H*0.3,0,x+FRAME_W*0.5,y+FRAME_H*0.3,FRAME_W*0.6);
+      glow.addColorStop(0,'rgba(233,30,140,0.12)'); glow.addColorStop(1,'transparent');
+      ctx.fillStyle=glow; ctx.fillRect(x,y,FRAME_W,FRAME_H);
+
+      // DIYA RATHOD vertical text on right
+      ctx.save();
+      ctx.translate(x+FRAME_W-18, y+FRAME_H-20);
+      ctx.rotate(-Math.PI/2);
+      ctx.fillStyle='rgba(255,255,255,0.08)';
+      ctx.font='bold 9px "DM Mono", monospace';
+      ctx.textAlign='left';
+      ctx.fillText('DIYA RATHOD · 2026', 0, 0);
+      ctx.restore();
+    }
+
+    ctx.restore();
+
+    // Active pink border
+    if(active){
+      ctx.strokeStyle='var(--pink)'; ctx.lineWidth=2;
+    } else {
+      ctx.strokeStyle='#222'; ctx.lineWidth=1;
+    }
+    roundRect(ctx,x,y,FRAME_W,FRAME_H,4);
+    ctx.stroke();
+
+    // Corner marks
+    const corners=[[x,y,1,1],[x+FRAME_W,y,-1,1],[x,y+FRAME_H,1,-1],[x+FRAME_W,y+FRAME_H,-1,-1]];
+    corners.forEach(([cx2,cy2,dx2,dy2])=>{
+      ctx.strokeStyle=active?'#e91e8c':'#333'; ctx.lineWidth=1.5;
+      ctx.beginPath(); ctx.moveTo(cx2+dx2*14,cy2); ctx.lineTo(cx2,cy2); ctx.lineTo(cx2,cy2+dy2*14); ctx.stroke();
+    });
+
+    // Reel number badge
+    ctx.fillStyle='rgba(233,30,140,0.85)';
+    ctx.font='bold 9px "DM Mono", monospace';
+    ctx.textAlign='left';
+    ctx.fillText('NO. '+r.num, x+12, y+20);
+
+    // Title
+    ctx.fillStyle=active?'#fff':'rgba(255,255,255,0.85)';
+    ctx.font=`${active?'italic ':''} bold ${active?20:17}px "Playfair Display", serif`;
+    ctx.fillText(r.title, x+12, y+FRAME_H-38);
+
+    // Subtitle
+    ctx.fillStyle='rgba(255,255,255,0.4)';
+    ctx.font='9px "DM Mono", monospace';
+    ctx.fillText(r.sub, x+12, y+FRAME_H-22);
+
+    // Watch hint
+    ctx.fillStyle='rgba(233,30,140,0.7)';
+    ctx.font='8px "DM Mono", monospace';
+    ctx.fillText('CLICK TO WATCH ↗', x+12, y+FRAME_H-6);
+  });
+
+  // Edge fades
+  const fl=ctx.createLinearGradient(0,0,80,0);
+  fl.addColorStop(0,'#050505'); fl.addColorStop(1,'transparent');
+  ctx.fillStyle=fl; ctx.fillRect(0,0,80,STRIP_H);
+  const fr=ctx.createLinearGradient(fc.width-80,0,fc.width,0);
+  fr.addColorStop(0,'transparent'); fr.addColorStop(1,'#050505');
+  ctx.fillStyle=fr; ctx.fillRect(fc.width-80,0,80,STRIP_H);
 }
-animFilm();
+
+// Animate film
+(function animFilm(){ filmOff+=(targOff-filmOff)*0.08; drawFilm(); requestAnimationFrame(animFilm); })();
 
 // Drag
-fc.addEventListener('mousedown',e=>{isDragging=true;dragStart=e.clientX;dragOrigin=filmOffset;fc.style.cursor='grabbing';});
+fc.addEventListener('mousedown',e=>{ dragging=true; dragSt=e.clientX; dragOrig=filmOff; fc.style.cursor='grabbing'; });
 window.addEventListener('mousemove',e=>{
-  if(!isDragging)return;
-  targetOffset=dragOrigin+(e.clientX-dragStart);
-  const minOff=-(reels.length*(FRAME_W+40)-fc.width+80);
-  targetOffset=Math.max(minOff,Math.min(80,targetOffset));
+  if(!dragging) return;
+  targOff=dragOrig+(e.clientX-dragSt);
+  const min=-(reelData.length*(FRAME_W+40)-fc.width+80);
+  targOff=Math.max(min,Math.min(80,targOff));
 });
-window.addEventListener('mouseup',e=>{
-  if(!isDragging)return;
-  isDragging=false;fc.style.cursor='grab';
-  // Snap to nearest frame
-  const frameW=FRAME_W+40;
-  const snap=Math.round(-targetOffset/frameW);
-  const clamped=Math.max(0,Math.min(reels.length-1,snap));
-  targetOffset=-(clamped*frameW)+40;
-  setActiveFrame(clamped);
+window.addEventListener('mouseup',()=>{
+  if(!dragging) return; dragging=false; fc.style.cursor='grab';
+  const fw=FRAME_W+40;
+  const snap=Math.max(0,Math.min(reelData.length-1,Math.round(-targOff/fw)));
+  targOff=-(snap*fw)+40;
+  activeF=snap;
 });
-
-// Click to open
 fc.addEventListener('click',e=>{
-  const rect=fc.getBoundingClientRect();
-  const clickX=e.clientX-rect.left;
-  reels.forEach((r,i)=>{
-    const fx=filmOffset+i*(FRAME_W+40)+40;
-    if(clickX>fx && clickX<fx+FRAME_W) window.open(r.url,'_blank');
-  });
+  const rect=fc.getBoundingClientRect(), cx=e.clientX-rect.left;
+  reelData.forEach((r,i)=>{ const fx=filmOff+i*(FRAME_W+40)+40; if(cx>fx&&cx<fx+FRAME_W) window.open(r.url,'_blank'); });
 });
-
-// Hover highlight
 fc.addEventListener('mousemove',e=>{
-  if(isDragging)return;
-  const rect=fc.getBoundingClientRect();
-  const clickX=e.clientX-rect.left;
+  if(dragging) return;
+  const rect=fc.getBoundingClientRect(), cx=e.clientX-rect.left;
   let found=-1;
-  reels.forEach((r,i)=>{
-    const fx=filmOffset+i*(FRAME_W+40)+40;
-    if(clickX>fx && clickX<fx+FRAME_W) found=i;
-  });
-  if(found!==activeFrame){activeFrame=found;drawFilm();}
+  reelData.forEach((r,i)=>{ const fx=filmOff+i*(FRAME_W+40)+40; if(cx>fx&&cx<fx+FRAME_W) found=i; });
+  if(found!==activeF){ activeF=found; }
 });
-
-function setActiveFrame(i){ activeFrame=i; }
-
-// Touch support
-fc.addEventListener('touchstart',e=>{isDragging=true;dragStart=e.touches[0].clientX;dragOrigin=filmOffset;},{passive:true});
+fc.addEventListener('touchstart',e=>{ dragging=true; dragSt=e.touches[0].clientX; dragOrig=filmOff; },{passive:true});
 fc.addEventListener('touchmove',e=>{
-  if(!isDragging)return;
-  targetOffset=dragOrigin+(e.touches[0].clientX-dragStart);
-  const minOff=-(reels.length*(FRAME_W+40)-fc.width+80);
-  targetOffset=Math.max(minOff,Math.min(80,targetOffset));
+  if(!dragging) return;
+  targOff=dragOrig+(e.touches[0].clientX-dragSt);
+  const min=-(reelData.length*(FRAME_W+40)-fc.width+80);
+  targOff=Math.max(min,Math.min(80,targOff));
 },{passive:true});
-fc.addEventListener('touchend',()=>{isDragging=false;});
+fc.addEventListener('touchend',()=>{ dragging=false; });
+window.addEventListener('resize',()=>{ fc.width=fc.offsetWidth; drawFilm(); });
 
-// Resize
-window.addEventListener('resize',()=>{fc.width=fc.offsetWidth;drawFilm();});
-
-
-
-// ══════════════════════════════════════════
-// WEBGL RIPPLE ON ABOUT IMAGE
-// ══════════════════════════════════════════
-const wc=document.getElementById('webglCanvas');
-const aboutRight=document.querySelector('.about-right');
-wc.width=aboutRight.offsetWidth||600;
-wc.height=aboutRight.offsetHeight||500;
-const wgl=wc.getContext('webgl');
-if(wgl){
-  const vSrc=`attribute vec2 a_pos;varying vec2 v_uv;void main(){v_uv=(a_pos+1.0)/2.0;gl_Position=vec4(a_pos,0,1);}`;
-  const fSrc=`precision mediump float;varying vec2 v_uv;uniform float u_time;uniform vec2 u_mouse;uniform vec2 u_res;
-  void main(){
-    vec2 uv=v_uv;
-    float d=distance(uv,u_mouse);
-    float wave=sin(d*40.0-u_time*3.0)*0.015*smoothstep(0.5,0.0,d);
-    uv+=wave;
-    float r=smoothstep(0.0,0.3,uv.x)*smoothstep(0.0,0.3,1.0-uv.x);
-    float g=smoothstep(0.0,0.3,uv.y)*smoothstep(0.0,0.3,1.0-uv.y);
-    vec3 col=vec3(0.91*r,0.12*g,0.55)*0.4*smoothstep(0.4,0.0,d);
-    gl_FragColor=vec4(col,col.r+col.g+col.b);
-  }`;
-  function makeShader(type,src){const s=wgl.createShader(type);wgl.shaderSource(s,src);wgl.compileShader(s);return s;}
-  const prog=wgl.createProgram();
-  wgl.attachShader(prog,makeShader(wgl.VERTEX_SHADER,vSrc));
-  wgl.attachShader(prog,makeShader(wgl.FRAGMENT_SHADER,fSrc));
-  wgl.linkProgram(prog);wgl.useProgram(prog);
-  const buf=wgl.createBuffer();
-  wgl.bindBuffer(wgl.ARRAY_BUFFER,buf);
-  wgl.bufferData(wgl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),wgl.STATIC_DRAW);
-  const aPos=wgl.getAttribLocation(prog,'a_pos');
-  wgl.enableVertexAttribArray(aPos);wgl.vertexAttribPointer(aPos,2,wgl.FLOAT,false,0,0);
-  const uTime=wgl.getUniformLocation(prog,'u_time');
-  const uMouse=wgl.getUniformLocation(prog,'u_mouse');
-  let wMx=0.5,wMy=0.5,wt=0;
-  aboutRight.addEventListener('mousemove',e=>{
-    const r=aboutRight.getBoundingClientRect();
-    wMx=(e.clientX-r.left)/r.width;
-    wMy=1-(e.clientY-r.top)/r.height;
-  });
-  function renderWgl(){
-    wt+=0.016;
-    wgl.viewport(0,0,wc.width,wc.height);
-    wgl.uniform1f(uTime,wt);
-    wgl.uniform2f(uMouse,wMx,wMy);
-    wgl.drawArrays(wgl.TRIANGLE_STRIP,0,4);
-    requestAnimationFrame(renderWgl);
+// ── WEBGL RIPPLE ──
+try {
+  const wc=document.getElementById('webglCanvas');
+  const ar=document.querySelector('.about-right');
+  wc.width=ar.offsetWidth||600; wc.height=ar.offsetHeight||500;
+  const wgl=wc.getContext('webgl');
+  if(wgl){
+    const vs=`attribute vec2 a;varying vec2 v;void main(){v=(a+1.)/2.;gl_Position=vec4(a,0,1);}`;
+    const fs=`precision mediump float;varying vec2 v;uniform float t;uniform vec2 m;
+    void main(){vec2 uv=v;float d=distance(uv,m);float w=sin(d*40.-t*3.)*.015*smoothstep(.5,0.,d);uv+=w;
+    float r=smoothstep(0.,.3,uv.x)*smoothstep(0.,.3,1.-uv.x);float g=smoothstep(0.,.3,uv.y)*smoothstep(0.,.3,1.-uv.y);
+    vec3 c=vec3(.91*r,.12*g,.55)*.4*smoothstep(.4,0.,d);gl_FragColor=vec4(c,c.r+c.g+c.b);}`;
+    const mk=(type,src)=>{const s=wgl.createShader(type);wgl.shaderSource(s,src);wgl.compileShader(s);return s;};
+    const prog=wgl.createProgram();
+    wgl.attachShader(prog,mk(wgl.VERTEX_SHADER,vs));
+    wgl.attachShader(prog,mk(wgl.FRAGMENT_SHADER,fs));
+    wgl.linkProgram(prog); wgl.useProgram(prog);
+    const buf=wgl.createBuffer(); wgl.bindBuffer(wgl.ARRAY_BUFFER,buf);
+    wgl.bufferData(wgl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),wgl.STATIC_DRAW);
+    const ap=wgl.getAttribLocation(prog,'a'); wgl.enableVertexAttribArray(ap); wgl.vertexAttribPointer(ap,2,wgl.FLOAT,false,0,0);
+    const ut=wgl.getUniformLocation(prog,'t'), um=wgl.getUniformLocation(prog,'m');
+    let wx=0.5,wy=0.5,wt=0;
+    ar.addEventListener('mousemove',e=>{ const r=ar.getBoundingClientRect(); wx=(e.clientX-r.left)/r.width; wy=1-(e.clientY-r.top)/r.height; });
+    (function rWgl(){ wt+=0.016; wgl.viewport(0,0,wc.width,wc.height); wgl.uniform1f(ut,wt); wgl.uniform2f(um,wx,wy); wgl.drawArrays(wgl.TRIANGLE_STRIP,0,4); requestAnimationFrame(rWgl); })();
   }
-  renderWgl();
+} catch(e){ console.warn('WebGL error',e); }
+
+// ── COUNTERS — direct DOM, no ScrollTrigger dependency ──
+function animateCounter(el, target, suffix, duration){
+  const start=performance.now();
+  function update(now){
+    const progress=Math.min((now-start)/duration,1);
+    const eased=1-Math.pow(1-progress,3);
+    el.textContent=Math.floor(eased*target)+suffix;
+    if(progress<1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
 }
 
-// ══════════════════════════════════════════
-// CANVAS SKILL NETWORK
-// ══════════════════════════════════════════
-const nc=document.getElementById('networkCanvas');
-const nctx=nc.getContext('2d');
-nc.width=nc.offsetWidth;
-const nodes=[
-  {label:'Diya',x:nc.width/2,y:200,r:18,color:'#e91e8c',core:true},
-  {label:'Cybersecurity',x:nc.width*0.15,y:120,r:12,color:'#e91e8c'},
-  {label:'Android',x:nc.width*0.85,y:100,r:12,color:'#e91e8c'},
-  {label:'ML / AI',x:nc.width*0.2,y:300,r:11,color:'#e91e8c'},
-  {label:'Python',x:nc.width*0.35,y:80,r:9,color:'#555'},
-  {label:'Kali Linux',x:nc.width*0.08,y:230,r:9,color:'#555'},
-  {label:'OWASP',x:nc.width*0.25,y:170,r:8,color:'#555'},
-  {label:'Kotlin',x:nc.width*0.75,y:170,r:9,color:'#555'},
-  {label:'Git',x:nc.width*0.6,y:80,r:9,color:'#555'},
-  {label:'scikit-learn',x:nc.width*0.12,y:350,r:8,color:'#555'},
-  {label:'Canva',x:nc.width*0.8,y:320,r:9,color:'#555'},
-  {label:'CapCut',x:nc.width*0.65,y:340,r:9,color:'#555'},
-  {label:'Creative',x:nc.width*0.78,y:240,r:11,color:'#e91e8c'},
-];
-const edges=[[0,1],[0,2],[0,3],[0,4],[0,8],[0,12],[1,5],[1,6],[2,7],[2,8],[3,9],[3,4],[12,10],[12,11]];
-let nTime=0;
-function drawNetwork(){
-  nctx.clearRect(0,0,nc.width,400);
-  // Edges
-  edges.forEach(([a,b])=>{
-    const na=nodes[a],nb=nodes[b];
-    const grad=nctx.createLinearGradient(na.x,na.y,nb.x,nb.y);
-    grad.addColorStop(0,'rgba(233,30,140,0.3)');
-    grad.addColorStop(1,'rgba(255,255,255,0.05)');
-    nctx.strokeStyle=grad;
-    nctx.lineWidth=0.8;
-    nctx.beginPath();nctx.moveTo(na.x,na.y);nctx.lineTo(nb.x,nb.y);nctx.stroke();
-  });
-  // Nodes
-  nodes.forEach((n,i)=>{
-    const pulse=n.core?Math.sin(nTime*2)*3:Math.sin(nTime*1.5+i)*1.5;
-    const r=n.r+pulse;
-    // Glow
-    if(n.color==='#e91e8c'){
-      const glow=nctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r*3);
-      glow.addColorStop(0,'rgba(233,30,140,0.2)');glow.addColorStop(1,'transparent');
-      nctx.fillStyle=glow;nctx.beginPath();nctx.arc(n.x,n.y,r*3,0,Math.PI*2);nctx.fill();
-    }
-    nctx.beginPath();nctx.arc(n.x,n.y,r,0,Math.PI*2);
-    nctx.fillStyle=n.color==='#e91e8c'?'rgba(233,30,140,0.9)':'rgba(40,40,40,0.9)';
-    nctx.fill();
-    nctx.strokeStyle=n.color==='#e91e8c'?'rgba(233,30,140,0.6)':'rgba(80,80,80,0.4)';
-    nctx.lineWidth=1;nctx.stroke();
-    // Label
-    nctx.fillStyle=n.core?'#fff':n.color==='#e91e8c'?'#fff':'rgba(255,255,255,0.6)';
-    nctx.font=`${n.core?'bold ':''} ${n.core?12:9}px "DM Mono", monospace`;
-    nctx.textAlign='center';
-    nctx.fillText(n.label,n.x,n.y+(n.core?4:r+14));
-  });
-  nTime+=0.02;
-  requestAnimationFrame(drawNetwork);
-}
-ScrollTrigger.create({trigger:'#skills',start:'top 80%',once:true,onEnter:drawNetwork});
-
-// ══════════════════════════════════════════
-// COUNTER ANIMATION
-// ══════════════════════════════════════════
-document.querySelectorAll('.counter').forEach(el=>{
-  const target=parseInt(el.dataset.target);
-  const suffix=el.dataset.suffix||'';
-  ScrollTrigger.create({trigger:el,start:'top 85%',once:true,
-    onEnter:()=>{
-      let c=0;const step=target/40;
-      const t=setInterval(()=>{c+=step;if(c>=target){c=target;clearInterval(t);}el.textContent=Math.floor(c)+suffix;},35);
+// Use IntersectionObserver for counters — more reliable than ScrollTrigger
+const stat1=document.getElementById('stat1');
+const stat2=document.getElementById('stat2');
+const stat3=document.getElementById('stat3');
+const statsObs=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      animateCounter(stat1,2,'nd',1200);
+      animateCounter(stat2,6,'+',1400);
+      animateCounter(stat3,3,'',1000);
+      statsObs.disconnect();
     }
   });
-});
+},{threshold:0.3});
+statsObs.observe(document.querySelector('.about-stats'));
 
-// ══════════════════════════════════════════
-// SCROLL ANIMATIONS
-// ══════════════════════════════════════════
+// ── SCROLL ANIMATIONS ──
 gsap.from('.about-quote',{x:-60,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#about',start:'top 70%'}});
 gsap.from('.about-text',{x:-40,opacity:0,duration:1,delay:0.2,ease:'power3.out',scrollTrigger:{trigger:'#about',start:'top 70%'}});
 gsap.from('.about-stats',{y:40,opacity:0,duration:0.8,delay:0.4,ease:'power3.out',scrollTrigger:{trigger:'#about',start:'top 70%'}});
@@ -840,31 +706,19 @@ gsap.utils.toArray('.s-pill').forEach((p,i)=>gsap.from(p,{opacity:0,scale:0.7,du
 gsap.from('.contact-title',{y:80,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#contact',start:'top 75%'}});
 gsap.from('.contact-label,.c-links',{x:60,opacity:0,duration:1,delay:0.2,ease:'power3.out',scrollTrigger:{trigger:'#contact',start:'top 75%'}});
 
-// ══════════════════════════════════════════
-// TILT ON SKILL PILLS
-// ══════════════════════════════════════════
+// ── TILT PILLS ──
 document.querySelectorAll('.s-pill').forEach(p=>{
-  p.addEventListener('mousemove',e=>{
-    const r=p.getBoundingClientRect();
-    gsap.to(p,{rotationY:(e.clientX-r.left-r.width/2)/r.width*20,rotationX:-(e.clientY-r.top-r.height/2)/r.height*20,duration:0.3,ease:'power2.out',transformPerspective:500});
-  });
+  p.addEventListener('mousemove',e=>{ const r=p.getBoundingClientRect(); gsap.to(p,{rotationY:(e.clientX-r.left-r.width/2)/r.width*20,rotationX:-(e.clientY-r.top-r.height/2)/r.height*20,duration:0.3,ease:'power2.out',transformPerspective:500}); });
   p.addEventListener('mouseleave',()=>gsap.to(p,{rotationY:0,rotationX:0,duration:0.5,ease:'elastic.out(1,0.4)'}));
 });
 
-// ══════════════════════════════════════════
-// MAGNETIC BUTTONS
-// ══════════════════════════════════════════
+// ── MAGNETIC BUTTONS ──
 document.querySelectorAll('.magnetic').forEach(el=>{
-  el.addEventListener('mousemove',e=>{
-    const r=el.getBoundingClientRect();
-    gsap.to(el,{x:(e.clientX-r.left-r.width/2)*0.35,y:(e.clientY-r.top-r.height/2)*0.35,duration:0.3,ease:'power2.out'});
-  });
+  el.addEventListener('mousemove',e=>{ const r=el.getBoundingClientRect(); gsap.to(el,{x:(e.clientX-r.left-r.width/2)*0.35,y:(e.clientY-r.top-r.height/2)*0.35,duration:0.3,ease:'power2.out'}); });
   el.addEventListener('mouseleave',()=>gsap.to(el,{x:0,y:0,duration:0.6,ease:'elastic.out(1,0.4)'}));
 });
 
-// ══════════════════════════════════════════
-// COLOUR SHIFT
-// ══════════════════════════════════════════
+// ── COLOUR SHIFT ──
 [{el:'#reels',c:'#060608'},{el:'.glitch-section',c:'#08050a'},{el:'#about',c:'#060606'},{el:'#skills',c:'#050508'},{el:'#contact',c:'#050505'}].forEach(s=>{
   ScrollTrigger.create({trigger:s.el,start:'top center',end:'bottom center',
     onEnter:()=>gsap.to('body',{backgroundColor:s.c,duration:1.2,ease:'power2.out'}),
