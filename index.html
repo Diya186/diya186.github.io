@@ -100,32 +100,32 @@ section{border-bottom:1px solid var(--black);}
 .project-tag.pink-tag{background:var(--pink);color:white;}
 
 /* CREATIVE */
-.creative{display:grid;grid-template-columns:1.4fr 1fr;}
+.creative{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
 .creative-left{padding:5rem 3rem;border-right:1px solid var(--black);}
-.creative-right{padding:5rem 3rem;background:var(--black);}
+.creative-right{padding:5rem 3rem;background:var(--black);min-height:100%;}
 .creative-right .section-label{color:var(--pink);}
 .creative-right .section-title{color:var(--white);}
 .tools-list{margin-top:2.5rem;}
 .tool-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid var(--lightgray);font-size:12px;}
 .tool-row:last-child{border-bottom:none;}
 .tool-name{font-weight:500;}
-.tool-bar{width:100px;height:2px;background:#ddd;overflow:hidden;}
+.tool-bar{width:140px;height:3px;background:#ddd;overflow:hidden;}
 .tool-fill{height:100%;background:var(--pink);}
 .creative-items{margin-top:2.5rem;}
 .creative-item{padding:1.2rem 0;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center;}
 .creative-item:last-child{border-bottom:none;}
-.creative-item-name{font-size:13px;color:var(--white);list-style:none;}
+.creative-item-name{font-size:13px;color:var(--white);}
 .creative-item-tag{font-family:'DM Mono',monospace;font-size:9px;color:var(--pink);letter-spacing:0.1em;}
 
 /* CONTACT */
-.contact{display:grid;grid-template-columns:1fr 1fr;min-height:50vh;}
+.contact{display:grid;grid-template-columns:1fr 1fr;min-height:60vh;}
 .contact-left{padding:5rem 3rem;border-right:1px solid var(--black);display:flex;flex-direction:column;justify-content:center;}
-.contact-right{padding:5rem 3rem;background:var(--black);display:flex;flex-direction:column;justify-content:center;}
+.contact-right{padding:5rem 3rem;background:var(--black);display:flex;flex-direction:column;justify-content:space-between;}
 .contact-right .section-label{color:var(--pink);}
 .contact-right .section-title{color:var(--white);font-size:clamp(1.5rem,3vw,2.5rem);}
 .contact-tagline{font-family:'Playfair Display',serif;font-size:clamp(1rem,1.8vw,1.4rem);font-style:italic;color:#444;margin-top:1rem;line-height:1.6;max-width:340px;}
 .contact-links{margin-top:2.5rem;display:flex;flex-direction:column;gap:0;}
-.contact-link{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid #222;text-decoration:none;color:var(--white);font-size:12px;letter-spacing:0.04em;transition:color 0.2s;}
+.contact-link{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid #222;text-decoration:none;color:var(--white) !important;font-size:12px;letter-spacing:0.04em;transition:color 0.2s;}
 .contact-link:hover{color:var(--pink);}
 .contact-link span{font-family:'DM Mono',monospace;font-size:9px;color:var(--gray);}
 
@@ -177,7 +177,7 @@ footer a{color:var(--pink);text-decoration:none;}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-image">
-    <div class="hero-tag">Portfolio 2026</div>
+    <div class="hero-tag">Portfolio 2025</div>
     <img src="diya.jpg" alt="Diya Rathod"/>
     <div class="hero-overlay-text">DR</div>
     <p class="hero-caption">Diya Rathod · UoWD Dubai</p>
@@ -391,12 +391,12 @@ footer a{color:var(--pink);text-decoration:none;}
     <p class="section-label">What Makes Me, Me</p>
     <h2 class="section-title" style="font-size:1.8rem;">Hobbies &<br/>Interests</h2>
     <div class="creative-items">
-      <div class="creative-item"><span class="creative-item-name">📚 Avid Reader</span><span class="creative-item-tag">Always reading</span></div>
-      <div class="creative-item"><span class="creative-item-name">🧶 Crocheting</span><span class="creative-item-tag">Handmade</span></div>
-      <div class="creative-item"><span class="creative-item-name">✍️ Writing</span><span class="creative-item-tag">Storytelling</span></div>
-      <div class="creative-item"><span class="creative-item-name">🎬 Reel Editing</span><span class="creative-item-tag">CapCut</span></div>
-      <div class="creative-item"><span class="creative-item-name">🏐 Volleyball</span><span class="creative-item-tag">Former captain</span></div>
-      <div class="creative-item"><span class="creative-item-name">🌍 Meeting People</span><span class="creative-item-tag">Socializer</span></div>
+      <div class="creative-item"><span class="creative-item-name">Avid Reader</span><span class="creative-item-tag">Always reading</span></div>
+      <div class="creative-item"><span class="creative-item-name">Crocheting</span><span class="creative-item-tag">Handmade</span></div>
+      <div class="creative-item"><span class="creative-item-name">Writing</span><span class="creative-item-tag">Storytelling</span></div>
+      <div class="creative-item"><span class="creative-item-name">Reel Editing</span><span class="creative-item-tag">CapCut</span></div>
+      <div class="creative-item"><span class="creative-item-name">Volleyball</span><span class="creative-item-tag">Former captain</span></div>
+      <div class="creative-item"><span class="creative-item-name">Meeting People</span><span class="creative-item-tag">Socializer</span></div>
     </div>
   </div>
 </section>
@@ -407,6 +407,9 @@ footer a{color:var(--pink);text-decoration:none;}
     <p class="section-label">Get In Touch</p>
     <h2 class="section-title">Let's<br/>Connect</h2>
     <p class="contact-tagline">Open to internship opportunities, collaborations, and good conversations. Let's build something meaningful.</p>
+    <div style="margin-top:auto;padding-top:3rem;overflow:hidden;">
+      <p style="font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5rem);font-weight:900;line-height:0.85;color:rgba(0,0,0,0.05);letter-spacing:-0.03em;user-select:none;">LET'S<br/>TALK.</p>
+    </div>
   </div>
   <div class="contact-right">
     <p class="section-label">Find Me</p>
@@ -416,6 +419,9 @@ footer a{color:var(--pink);text-decoration:none;}
       <a href="https://github.com/Diya186" class="contact-link" target="_blank">github.com/Diya186<span>GitHub →</span></a>
       <a href="https://www.linkedin.com/in/diya-rathod-571a55302/" class="contact-link" target="_blank">linkedin.com/in/diya-rathod<span>LinkedIn →</span></a>
       <a href="https://tryhackme.com" class="contact-link" target="_blank">TryHackMe Profile<span>Security →</span></a>
+    </div>
+    <div style="margin-top:auto;padding-top:3rem;overflow:hidden;">
+      <p style="font-family:'Playfair Display',serif;font-size:clamp(4rem,8vw,7rem);font-weight:900;line-height:0.85;color:rgba(255,255,255,0.06);letter-spacing:-0.03em;user-select:none;">DIYA<br/>RATHOD</p>
     </div>
   </div>
 </section>
