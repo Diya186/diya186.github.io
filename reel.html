@@ -15,7 +15,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <!-- Lenis smooth scroll -->
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.9/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/dist/lenis.min.js"></script>
 
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -113,19 +113,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 #filmCanvas:active{cursor:grabbing;}
 .film-hint{text-align:center;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--gray);text-transform:uppercase;padding:1.5rem 0;border-top:1px solid #0e0e0e;}
 
-/* REEL INFO PANEL */
-#reelPanel{padding:3rem 4rem;border-top:1px solid #0e0e0e;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;opacity:0;}
-.reel-info-card{padding:2rem;border:1px solid #111;transition:border-color 0.3s;}
-.reel-info-card.active,.reel-info-card:hover{border-color:var(--pink);}
-.reel-info-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--gray);margin-bottom:0.75rem;}
-.reel-info-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;margin-bottom:0.5rem;}
-.reel-info-card h3 em{font-style:italic;color:var(--pink);}
-.reel-info-card p{font-size:11px;color:var(--gray);line-height:1.8;margin-bottom:1rem;}
-.reel-pills{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem;}
-.reel-pill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;border:1px solid #1a1a1a;padding:0.25rem 0.6rem;text-transform:uppercase;color:var(--gray);}
-.reel-pill.pk{border-color:var(--pink);color:var(--pink);}
-.reel-watch-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--pink);text-decoration:none;border-bottom:1px solid var(--pink);padding-bottom:2px;transition:opacity 0.2s;}
-.reel-watch-btn:hover{opacity:0.7;}
+
 
 /* GLITCH */
 .glitch-section{padding:8rem 4rem;text-align:center;border-top:1px solid #0e0e0e;border-bottom:1px solid #0e0e0e;}
@@ -149,19 +137,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 #webglCanvas{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity 0.4s;}
 .about-right:hover #webglCanvas{opacity:1;}
 
-.about-quote{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:900;line-height:1.2;margin-bottom:2rem;}
+.about-quote{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.2;margin-bottom:2rem;}
 .about-quote em{font-style:italic;color:var(--pink);}
-.about-text{font-size:13px;color:var(--gray);line-height:2;margin-bottom:3rem;}
+.about-text{font-size:16px;color:var(--gray);line-height:2;margin-bottom:3rem;}
 .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;border-top:1px solid #0e0e0e;padding-top:2rem;}
 .stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--pink);line-height:1;}
 .stat-lbl{font-size:10px;color:var(--gray);letter-spacing:0.05em;margin-top:0.2rem;}
 
-/* SKILLS - NETWORK */
+/* SKILLS */
 #skills{padding:6rem 4rem;border-top:1px solid #0e0e0e;}
 .skills-header{margin-bottom:3rem;}
 .skills-header h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:900;}
 .skills-header h2 em{font-style:italic;color:var(--pink);}
-#networkCanvas{width:100%;height:400px;display:block;border:1px solid #0e0e0e;margin-bottom:3rem;}
 .skill-group{margin-bottom:2rem;}
 .skill-group-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--pink);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.75rem;}
 .skill-group-label::after{content:'';flex:1;height:1px;background:#0e0e0e;}
@@ -282,29 +269,7 @@ footer a{color:var(--pink);text-decoration:none;}
   <canvas id="filmCanvas" height="280"></canvas>
   <p class="film-hint">← drag to explore the film strip →</p>
 
-  <div id="reelPanel">
-    <div class="reel-info-card active" id="card0">
-      <div class="reel-info-num">Reel No. 01</div>
-      <h3>The <em>Edit</em></h3>
-      <p>A cinematic edit built around rhythm and transitions — every cut timed to the beat.</p>
-      <div class="reel-pills"><span class="reel-pill pk">CapCut</span><span class="reel-pill">Transitions</span><span class="reel-pill">Storytelling</span></div>
-      <a class="reel-watch-btn" href="https://drive.google.com/file/d/1amQH7BNJyb5TXjbGJN_WbH0EDKIBrZtU/view" target="_blank">Watch ↗</a>
-    </div>
-    <div class="reel-info-card" id="card1">
-      <div class="reel-info-num">Reel No. 02</div>
-      <h3>The <em>Mood</em></h3>
-      <p>An aesthetic montage exploring colour, texture, and pacing.</p>
-      <div class="reel-pills"><span class="reel-pill pk">Aesthetic</span><span class="reel-pill">Colour Grading</span><span class="reel-pill">Montage</span></div>
-      <a class="reel-watch-btn" href="https://drive.google.com/file/d/13CbN1zuYks95zGkBoy-ZWvafCyjwdrKS/view" target="_blank">Watch ↗</a>
-    </div>
-    <div class="reel-info-card" id="card2">
-      <div class="reel-info-num">Reel No. 03</div>
-      <h3>The <em>Story</em></h3>
-      <p>Narrative-driven editing that turns raw footage into a story.</p>
-      <div class="reel-pills"><span class="reel-pill pk">Narrative</span><span class="reel-pill">Sound Sync</span><span class="reel-pill">CapCut</span></div>
-      <a class="reel-watch-btn" href="https://drive.google.com/file/d/1VS6yFGGTNE2mFbxSsvd-MepCcDJciD3-/view" target="_blank">Watch ↗</a>
-    </div>
-  </div>
+
 </section>
 
 <!-- GLITCH -->
@@ -348,7 +313,7 @@ footer a{color:var(--pink);text-decoration:none;}
     <p class="eyebrow">Expertise</p>
     <h2>Skills <em>&</em> Tools</h2>
   </div>
-  <canvas id="networkCanvas"></canvas>
+
   <div class="skill-group"><div class="skill-group-label">🔐 Cybersecurity</div><div class="skill-pills-row"><span class="s-pill star">Kali Linux</span><span class="s-pill star">Metasploit</span><span class="s-pill star">Penetration Testing</span><span class="s-pill star">OWASP Top 10</span><span class="s-pill hot">SQL Injection</span><span class="s-pill hot">XSS</span><span class="s-pill hot">CSRF</span><span class="s-pill">Command Injection</span><span class="s-pill">DVWA</span><span class="s-pill">Juice Shop</span></div></div>
   <div class="skill-group"><div class="skill-group-label">📱 Android & Development</div><div class="skill-pills-row"><span class="s-pill star">Android Studio</span><span class="s-pill star">Kotlin</span><span class="s-pill star">Java</span><span class="s-pill hot">Python</span><span class="s-pill hot">SQL</span><span class="s-pill hot">HTML & CSS</span><span class="s-pill star">Git & GitHub</span><span class="s-pill">RecyclerView</span></div></div>
   <div class="skill-group"><div class="skill-group-label">🤖 Data Science & ML</div><div class="skill-pills-row"><span class="s-pill star">scikit-learn</span><span class="s-pill star">Jupyter Notebook</span><span class="s-pill hot">PCA & t-SNE</span><span class="s-pill hot">TF-IDF</span><span class="s-pill">ML Pipelines</span></div></div>
@@ -721,10 +686,7 @@ fc.addEventListener('mousemove',e=>{
   if(found!==activeFrame){activeFrame=found;drawFilm();}
 });
 
-function setActiveFrame(i){
-  activeFrame=i;
-  document.querySelectorAll('.reel-info-card').forEach((c,j)=>c.classList.toggle('active',j===i));
-}
+function setActiveFrame(i){ activeFrame=i; }
 
 // Touch support
 fc.addEventListener('touchstart',e=>{isDragging=true;dragStart=e.touches[0].clientX;dragOrigin=filmOffset;},{passive:true});
@@ -739,10 +701,7 @@ fc.addEventListener('touchend',()=>{isDragging=false;});
 // Resize
 window.addEventListener('resize',()=>{fc.width=fc.offsetWidth;drawFilm();});
 
-// Reveal panel on scroll
-ScrollTrigger.create({trigger:'#reelPanel',start:'top 85%',once:true,
-  onEnter:()=>gsap.to('#reelPanel',{opacity:1,y:0,duration:0.8,ease:'power3.out'})
-});
+
 
 // ══════════════════════════════════════════
 // WEBGL RIPPLE ON ABOUT IMAGE
