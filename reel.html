@@ -47,7 +47,7 @@ body::after{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgrou
 /* LOADER */
 #loader{position:fixed;inset:0;background:var(--black);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;}
 .loader-letters{display:flex;gap:0.02em;margin-bottom:2rem;}
-.loader-letter{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,8rem);font-weight:900;color:var(--white);display:inline-block;transform:translateY(120%) rotate(8deg);opacity:0;}
+.loader-letter{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,8rem);font-weight:900;color:var(--white);display:inline-block;transform:translateY(0) rotate(0deg);opacity:1;}
 .loader-bar-wrap{width:280px;height:1px;background:#111;}
 .loader-bar-fill{height:100%;background:var(--pink);width:0%;}
 .loader-pct{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--gray);margin-top:1rem;}
@@ -496,25 +496,38 @@ document.addEventListener('click', e => {
 });
 
 // ══════════════════════════════════════════
-// LOADER
+// LOADER — reliable version
 // ══════════════════════════════════════════
 const letters=document.querySelectorAll('.loader-letter');
 const fill=document.getElementById('loaderFill');
 const pctEl=document.getElementById('loaderPct');
-gsap.to(letters,{y:0,rotation:0,opacity:1,duration:0.6,stagger:0.05,ease:'power4.out',delay:0.1});
+
+// Show letters immediately without animation first
+letters.forEach(l=>{ l.style.transform='translateY(0)'; l.style.opacity='1'; l.style.transition='transform 0.6s ease, opacity 0.6s ease'; });
+
+// Then animate them in after a tiny delay
+setTimeout(()=>{
+  letters.forEach((l,i)=>{
+    l.style.transform='translateY(0) rotate(0deg)';
+    l.style.opacity='1';
+  });
+},50);
+
 let p=0;
 const iv=setInterval(()=>{
-  p+=Math.random()*5+2; if(p>=100){p=100;clearInterval(iv);endLoad();}
-  fill.style.width=p+'%'; pctEl.textContent=Math.floor(p)+'%';
-},55);
+  p+=Math.random()*4+3;
+  if(p>=100){p=100;clearInterval(iv);endLoad();}
+  fill.style.width=p+'%';
+  pctEl.textContent=Math.floor(p)+'%';
+},60);
+
 function endLoad(){
   setTimeout(()=>{
-    gsap.to(letters,{y:-120,opacity:0,duration:0.4,stagger:0.03,ease:'power3.in'});
-    gsap.to('#loader',{yPercent:-100,duration:1.1,ease:'power4.inOut',delay:0.3,onComplete:()=>{
+    gsap.to('#loader',{yPercent:-100,duration:1.1,ease:'power4.inOut',delay:0.2,onComplete:()=>{
       document.getElementById('loader').style.display='none';
       startHero();
     }});
-  },300);
+  },400);
 }
 
 // ══════════════════════════════════════════
